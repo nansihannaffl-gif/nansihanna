@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nansi Hanna | Elite Motional Financial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init("WbOWdf4BrqPs0xVqY");</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#0d0d0e;
+  --cream:#131315;
+  --cream2:#18181c;
+  --blush:#1e1e23;
+  --gold:#d8b8c0;
+  --gold-soft:#e8e0d8;
+  --gold-glow:rgba(216,184,192,0.18);
+  --gold-glow-sm:rgba(216,184,192,0.10);
+  --gold2:#a09080;
+  --beige:#e8ddd0;
+  --beige-bright:#f5ede0;
+  --beige-glow:rgba(232,221,208,0.20);
+  --dark:#f0ece6;
+  --taupe:#6a6058;
+  --emerald:#2a4a3a;
+  --emerald-acc:rgba(42,74,58,0.22);
+  --muted-white:rgba(240,236,230,0.06);
+  --pink:rgba(216,184,192,0.55);
+  --pink-soft:rgba(216,184,192,0.12);
+  --border:#222018;
+}
+html{scroll-behavior:smooth}
+.svc-card:hover{background:var(--cream2) !important}
+.svc-card:hover .svc-bar{width:100% !important}
+body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;}
+
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes expandW{from{width:0}to{width:60px}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes subtleFade{from{opacity:0}to{opacity:1}}
+@keyframes glowPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.04)}}
+@keyframes goldShimmer{0%,100%{opacity:0.6}50%{opacity:1}}
+
+/* ============ TOP NAV ============ */
+.top-nav{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:16px 40px;
+  border-bottom:1px solid var(--border);
+  background:var(--white);
+  position:sticky;top:0;z-index:100;
+}
+.nav-left{display:flex;gap:28px;align-items:center}
+.nav-left a{font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color .2s}
+.nav-left a:hover{color:var(--dark)}
+.nav-center{text-align:center}
+.nav-center h1{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:var(--dark)}
+.nav-center p{font-size:8px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:2px}
+.nav-right{display:flex;gap:28px;align-items:center;justify-content:flex-end}
+.nav-right a{font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color .2s}
+.nav-right a:hover{color:var(--dark)}
+.nav-cta{padding:9px 20px;background:transparent;color:var(--beige);font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(232,221,208,0.30);cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
+.nav-cta:hover{background:rgba(232,221,208,0.08);border-color:var(--beige)}
+
+/* ============ HERO ============ */
+.hero{
+  padding:72px 60px 56px;
+  text-align:center;
+  background:var(--white);
+  max-width:1100px;
+  margin:0 auto;
+}
+.hero-eyebrow{font-size:9px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--taupe);margin-bottom:18px;animation:fadeIn .7s ease both}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(58px,9vw,100px);
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--dark);
+  line-height:.95;
+  margin-bottom:14px;
+  animation:fadeIn .7s .1s ease both;
+}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,3.5vw,40px);font-weight:300;font-style:italic;letter-spacing:.02em;
+  color:var(--gold2);margin-bottom:10px;
+  animation:fadeIn .7s .2s ease both;
+}
+.hero-divider{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--beige),var(--gold),var(--beige-bright),transparent);
+  margin:0 auto 40px;
+  animation:expandW .8s .3s ease forwards;
+}
+
+/* ============ VIDEO BLOCK ============ */
+.video-block{
+  position:relative;
+  max-width:720px;
+  margin:0 auto 32px;
+  animation:fadeIn .8s .4s ease both,softFloat 6s 1.5s ease-in-out infinite;
+}
+/* Decorative side image */
+
+.video-frame{
+  position:relative;
+  background:var(--cream2);
+  border:1px solid rgba(255,255,255,0.22);
+  padding:16px;
+  box-shadow:0 0 50px 18px rgba(255,255,255,0.18),0 0 80px 35px rgba(255,255,255,0.10),0 0 120px 50px rgba(20,100,50,0.07);
+}
+.video-inner{
+  position:relative;
+  background:#000;
+  overflow:hidden;
+  cursor:pointer;
+}
+/* Cinematic video thumbnail overlay */
+.video-cinematic-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    135deg,
+    rgba(13,13,14,0.45) 0%,
+    rgba(13,13,14,0.15) 40%,
+    rgba(13,13,14,0.05) 60%,
+    rgba(248,232,240,0.09) 85%,
+    rgba(216,184,192,0.08) 100%
+  );
+  pointer-events:none;
+  z-index:1;
+}
+.video-cinematic-overlay::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(216,184,192,0.3),transparent);
+}
+.video-cinematic-overlay::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(216,184,192,0.2),transparent);
+}
+.video-inner img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+  opacity:0.88;
+  filter:contrast(1.04) brightness(0.96);
+  transition:opacity .3s,filter .3s;
+}
+.video-inner:hover img{opacity:0.78;filter:contrast(1.05) brightness(0.92)}
+.video-play-btn{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.video-play-btn span{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  border:1.5px solid rgba(255,255,255,0.5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;
+  transition:all .3s;
+}
+.video-inner:hover .video-play-btn span{background:rgba(216,184,192,0.5);border-color:rgba(216,184,192,0.9);transform:scale(1.08)}
+/* Title overlay on video */
+.video-title-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:rgba(14,14,15,0.28);
+  backdrop-filter:blur(0px);
+}
+.video-title-overlay h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,5vw,52px);
+  font-weight:400;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--dark);
+  line-height:1;
+}
+.video-title-overlay h2 em{
+  font-style:italic;
+  display:block;
+  font-size:.55em;
+  letter-spacing:.35em;
+  color:var(--taupe);
+  margin-bottom:6px;
+}
+.video-title-overlay p{
+  font-size:9px;
+  font-weight:300;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--taupe);
+  margin-top:10px;
+}
+.watch-agency-btn{
+  margin-top:18px;
+  padding:9px 24px;
+  border:1px solid var(--dark);
+  background:transparent;
+  color:var(--dark);
+  font-family:'Inter',sans-serif;
+  font-size:9px;
+  font-weight:300;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .25s;
+  text-decoration:none;
+  display:inline-block;
+}
+.watch-agency-btn:hover{background:var(--dark);color:#fff}
+
+/* Circular badge */
+.video-badge-circle{
+  position:absolute;
+  right:-24px;
+  top:50%;
+  transform:translateY(-50%);
+  width:72px;height:72px;
+  border-radius:50%;
+  background:var(--cream);
+  border:1px solid var(--border);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  z-index:5;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+.video-badge-circle span{font-family:'Cormorant Garamond',serif;font-size:9px;font-style:italic;color:var(--taupe);text-align:center;line-height:1.3;letter-spacing:.05em}
+
+/* ============ MAIN CTA ============ */
+.main-cta-wrap{text-align:center;margin-bottom:64px;animation:fadeIn .8s .5s ease both}
+.main-cta{
+  display:inline-block;
+  padding:18px 64px;
+  background:#f0ece6;
+  color:#0d0d0e;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  border:none;
+  cursor:pointer;
+  transition:all .4s;
+  box-shadow:0 0 30px 8px rgba(216,184,192,0.30),0 0 55px 18px rgba(216,184,192,0.15);
+  animation:glowPulse 3s ease-in-out infinite;
+}
+.main-cta:hover{background:var(--gold);color:#0d0d0e;transform:translateY(-2px);box-shadow:0 0 40px 14px rgba(216,184,192,0.45),0 0 72px 30px rgba(216,184,192,0.25)}
+
+/* ============ STATS ============ */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  max-width:760px;
+  margin:0 auto 0;
+  padding-top:40px;
+  border-top:1px solid var(--border);
+  animation:fadeIn .8s .6s ease both;
+}
+.stat{text-align:center;padding:0 24px}
+.stat:not(:last-child){border-right:1px solid var(--border)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--gold);letter-spacing:.05em}
+.stat-label{font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:5px}
+
+/* ============ ABOUT / PHOTO ============ */
+.about-strip{
+  max-width:860px;margin:72px auto 0;
+  display:grid;grid-template-columns:1fr 2fr;gap:56px;
+  align-items:center;padding:0 40px;
+  animation:fadeIn .8s .7s ease both;
+}
+.about-photo-wrap{
+  position:relative;
+  aspect-ratio:3/4;
+  background:var(--cream2);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.about-photo-wrap::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 80%,rgba(216,184,192,0.14) 0%,transparent 70%);
+}
+.about-photo-inner{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;
+}
+.about-photo-placeholder{
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;font-style:italic;
+  color:var(--taupe);letter-spacing:.15em;
+  text-align:center;line-height:2;
+}
+.about-photo-placeholder span{
+  display:block;font-size:28px;opacity:0.3;margin-bottom:8px;
+}
+.about-text{}
+.about-eyebrow{font-size:8px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.about-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:var(--dark);line-height:1.2;margin-bottom:18px}
+.about-heading em{font-style:italic;color:var(--gold)}
+.about-body{font-size:14px;color:var(--taupe);line-height:1.85;font-family:'Cormorant Garamond',serif;font-style:italic;margin-bottom:20px}
+.about-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;
+  border:1px solid rgba(216,184,192,0.25);
+  background:rgba(216,184,192,0.05);
+  font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials-strip{
+  max-width:1000px;margin:72px auto 0;padding:0 40px;
+  animation:fadeIn .8s .8s ease both;
+}
+.testimonials-eyebrow{font-size:8px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);text-align:center;margin-bottom:36px}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.testimonial-card{
+  background:var(--white);padding:32px 24px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.t-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;
+  color:var(--dark);line-height:1.7;
+  margin-bottom:20px;flex:1;
+}
+.t-attr{font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+.t-attr strong{color:var(--gold);display:block;margin-bottom:2px;letter-spacing:.15em;font-weight:300}
+.t-stars{color:var(--gold);font-size:10px;margin-bottom:14px;letter-spacing:2px}
+
+/* ============ MARQUEE ============ */
+.marquee-wrap{
+  background:var(--cream2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:11px 0;
+  overflow:hidden;
+  margin-top:72px;
+}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 25s linear infinite}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:20px;
+  padding:0 28px;
+  font-size:9px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--taupe);
+  font-family:'Inter',sans-serif;
+}
+.marquee-dot{color:var(--gold);font-size:8px}
+
+/* ============ HOW IT WORKS ============ */
+.section{padding:80px 60px;max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:56px}
+.section-eyebrow{font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:400;color:var(--dark);letter-spacing:.05em}
+.section-title em{font-style:italic;color:var(--gold2)}
+
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.info-card{
+  background:var(--white);
+  padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:all .35s;cursor:default;
+  min-height:180px;display:flex;flex-direction:column;justify-content:center;
+}
+.info-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s}
+.info-card:hover{background:var(--cream2);box-shadow:0 0 24px 4px rgba(216,184,192,0.07),0 0 48px 12px rgba(216,184,192,0.03)}
+.info-card:hover::after{width:100%}
+.info-card:hover .card-front{opacity:0;transform:translateY(-6px)}
+.info-card:hover .card-back{opacity:1;transform:translateY(0)}
+.card-front{transition:all .3s}
+.card-back{position:absolute;inset:0;padding:28px;opacity:0;transform:translateY(6px);transition:all .3s;display:flex;flex-direction:column;justify-content:center}
+.card-icon{font-size:26px;margin-bottom:14px}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--dark);margin-bottom:6px}
+.card-hint{display:none}
+.card-back-label{font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px}
+.card-back-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--dark);line-height:1.7}
+.card-back-text strong{color:var(--gold2)}
+
+/* ============ CONTINUE SECTION ============ */
+.cta-section{
+  background:var(--cream2);
+  border-top:1px solid var(--border);
+  padding:80px 60px;
+  text-align:center;
+}
+.cta-eyebrow{font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,60px);font-weight:400;color:var(--dark);margin-bottom:8px;letter-spacing:.05em}
+.cta-title em{font-style:italic;color:var(--gold2)}
+.cta-sub{font-size:13px;color:var(--taupe);margin-bottom:36px;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:18px}
+#continue-btn{
+  display:inline-block;padding:16px 56px;
+  background:var(--dark);color:var(--cream);
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:.25em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;
+  box-shadow:0 0 28px 6px rgba(216,184,192,0.25),0 0 56px 16px rgba(232,221,208,0.15);
+  animation:glowPulse 3s ease-in-out infinite;
+}
+#continue-btn:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 0 40px 12px rgba(216,184,192,0.40),0 0 80px 28px rgba(232,221,208,0.25)}
+
+/* ============ QUIZ ============ */
+#page-quiz{background:var(--white);display:none}
+#page-quiz.active{display:block}
+#page-form,#page-calendar,#page-confirm,#page-not-a-fit{background:var(--white);display:none;align-items:center;justify-content:center}
+#page-form.active,#page-calendar.active,#page-confirm.active,#page-not-a-fit.active{display:flex}
+#page-admin-login,#page-portal-login{background:var(--white);display:none;align-items:center;justify-content:center}
+#page-admin-login.active,#page-portal-login.active{display:flex}
+#page-admin,#page-portal{display:none;min-height:100vh;background:var(--cream)}
+#page-admin.active,#page-portal.active{display:block}
+
+.quiz-inner{max-width:640px;width:100%;margin:0 auto;padding:80px 32px;text-align:center}
+.quiz-progress{display:flex;gap:6px;justify-content:center;margin-bottom:52px}
+.qp-dot{width:28px;height:1px;background:var(--border);transition:background .4s}
+.qp-dot.done{background:var(--gold)}
+.qp-dot.active{background:var(--dark)}
+.quiz-q-num{font-size:9px;font-weight:300;letter-spacing:.3em;color:var(--taupe);margin-bottom:18px;text-transform:uppercase}
+.quiz-question{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4vw,36px);font-weight:400;color:var(--dark);line-height:1.3;margin-bottom:44px}
+.quiz-options{display:flex;flex-direction:column;gap:8px;margin-bottom:36px}
+.quiz-opt{padding:16px 24px;border:1px solid var(--border);background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:hover{border-color:var(--dark);background:var(--cream)}
+.quiz-opt.selected{border-color:var(--dark);background:var(--dark);color:var(--cream)}
+.quiz-next{padding:14px 44px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;opacity:0;pointer-events:none}
+.quiz-next.visible{opacity:1;pointer-events:all}
+.quiz-next:hover{background:var(--gold)}
+
+/* ============ FORM ============ */
+.form-inner{max-width:560px;width:100%;margin:0 auto;padding:80px 32px;text-align:center}
+.form-eyebrow{font-size:9px;font-weight:300;letter-spacing:.3em;color:var(--gold2);margin-bottom:12px;text-transform:uppercase}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,50px);font-weight:400;color:var(--dark);margin-bottom:8px}
+.form-sub{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe);margin-bottom:40px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-field{display:flex;flex-direction:column;gap:5px;text-align:left}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:8px;font-weight:300;letter-spacing:.2em;color:var(--taupe);text-transform:uppercase}
+.form-field input,.form-field select{background:var(--cream);border:1px solid var(--border);color:var(--dark);padding:13px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none}
+.form-field input:focus,.form-field select:focus{border-color:var(--dark)}
+.form-field select option{background:#141416}
+.submit-btn{width:100%;padding:16px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;border:none;cursor:pointer;margin-top:8px;transition:all .3s}
+.submit-btn:hover{background:var(--gold)}
+
+/* ============ CALENDAR ============ */
+.cal-inner{max-width:660px;width:100%;margin:0 auto;padding:80px 32px;text-align:center}
+.cal-eyebrow{font-size:9px;font-weight:300;letter-spacing:.3em;color:var(--gold2);margin-bottom:12px;text-transform:uppercase}
+.cal-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,44px);font-weight:400;color:var(--dark);margin-bottom:36px}
+.cal-host{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
+.cal-avatar{width:52px;height:52px;border-radius:50%;background:var(--cream2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--dark);font-weight:400}
+.cal-host-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--dark);text-align:left}
+.cal-host-title{font-size:9px;color:var(--taupe);letter-spacing:.15em;font-weight:300;text-transform:uppercase;text-align:left}
+.calendar-widget{border:1px solid var(--border);background:var(--white);padding:24px;margin-bottom:20px}
+.cal-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cal-month span{font-size:11px;font-weight:300;letter-spacing:.2em;color:var(--dark);text-transform:uppercase}
+.cal-nav{background:none;border:1px solid var(--border);color:var(--taupe);width:30px;height:30px;cursor:pointer;font-size:13px;transition:all .2s}
+.cal-nav:hover{border-color:var(--dark);color:var(--dark)}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px}
+.cal-day-label{font-size:8px;font-weight:300;letter-spacing:.08em;color:var(--taupe);text-align:center;padding:3px 0;text-transform:uppercase}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--border);cursor:default;transition:all .2s}
+.cal-day.available{color:var(--dark);cursor:pointer;border:1px solid var(--border)}
+.cal-day.available:hover{border-color:var(--dark);background:var(--dark);color:var(--cream)}
+.cal-day.selected{background:var(--dark);color:var(--cream);border-color:var(--dark)}
+.cal-day.past{color:var(--border)}
+.time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.time-slot{padding:11px;border:1px solid var(--border);color:var(--taupe);font-size:11px;font-weight:300;letter-spacing:.1em;cursor:pointer;transition:all .2s;text-align:center}
+.time-slot.available{color:var(--dark);cursor:pointer}
+.time-slot.available:hover{border-color:var(--dark);background:var(--dark);color:var(--cream)}
+.time-slot.selected{background:var(--dark);color:var(--cream);border-color:var(--dark)}
+.book-btn{width:100%;padding:15px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;opacity:.35;pointer-events:none}
+.book-btn.ready{opacity:1;pointer-events:all}
+.book-btn.ready:hover{background:var(--gold)}
+
+/* ============ CONFIRM ============ */
+.confirm-inner{max-width:480px;width:100%;margin:0 auto;padding:80px 32px;text-align:center}
+.confirm-check{width:60px;height:60px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:22px;color:var(--gold)}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,48px);font-weight:400;color:var(--dark);margin-bottom:10px}
+.confirm-sub{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe);line-height:1.7;margin-bottom:28px}
+.confirm-details{border:1px solid var(--border);padding:20px;background:var(--cream);text-align:left;margin-bottom:20px}
+.confirm-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.confirm-row:last-child{border-bottom:none}
+.confirm-row .key{color:var(--taupe);font-size:8px;letter-spacing:.15em;text-transform:uppercase;font-weight:300;display:flex;align-items:center}
+.confirm-row .val{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--dark)}
+.confirm-note{font-size:11px;color:var(--taupe);line-height:1.7}
+
+/* ============ ADMIN ============ */
+.admin-login-box{max-width:360px;width:100%;padding:48px 36px;border:1px solid var(--border);background:var(--white);text-align:center}
+.admin-login-box h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--dark);margin-bottom:6px}
+.admin-login-box p{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--taupe);margin-bottom:28px}
+.admin-login-box input{width:100%;background:var(--cream);border:1px solid var(--border);color:var(--dark);padding:13px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;margin-bottom:10px;transition:border-color .2s}
+.admin-login-box input:focus{border-color:var(--dark)}
+.admin-login-btn{width:100%;padding:13px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
+.admin-login-btn:hover{background:var(--gold)}
+.admin-err{color:#b00;font-size:11px;margin-top:8px;font-style:italic;display:none;font-family:'Cormorant Garamond',serif}
+.admin-header{background:var(--white);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.admin-header h1{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark)}
+.admin-header span{font-size:10px;color:var(--taupe);letter-spacing:.1em;font-weight:300}
+.admin-body{padding:32px;max-width:1200px;margin:0 auto}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat-card{border:1px solid var(--border);padding:20px;background:var(--white)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--dark);font-weight:400}
+.stat-label{font-size:8px;font-weight:300;letter-spacing:.2em;color:var(--taupe);text-transform:uppercase;margin-top:4px}
+.admin-table-wrap{border:1px solid var(--border);background:var(--white);overflow:hidden}
+.admin-table-head{display:grid;grid-template-columns:2fr 1.5fr 1fr 1fr 1fr 1.5fr;border-bottom:1px solid var(--border);padding:12px 20px;background:var(--cream)}
+.admin-table-head span{font-size:8px;font-weight:300;letter-spacing:.15em;color:var(--taupe);text-transform:uppercase}
+.recruit-row{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1.5fr 1fr;padding:15px 20px;align-items:center;transition:background .2s}
+.recruit-row:hover{background:var(--cream)}
+.recruit-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--dark)}
+.recruit-email,.recruit-contact{font-size:11px;color:var(--taupe);margin-top:1px}
+.recruit-state{font-size:12px;color:var(--dark)}
+.rank-select{background:var(--white);border:1px solid var(--border);color:var(--dark);padding:5px 8px;font-family:'Inter',sans-serif;font-size:9px;font-weight:300;letter-spacing:.1em;outline:none;cursor:pointer;text-transform:uppercase}
+.rank-select:focus{border-color:var(--dark)}
+.recruited-btn{padding:7px 14px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:8px;font-weight:300;letter-spacing:.1em;border:none;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.recruited-btn:hover{background:var(--gold)}
+.recruited-btn.done{background:var(--cream);color:var(--taupe);cursor:default;border:1px solid var(--border)}
+
+/* ============ PORTAL ============ */
+.portal-header{background:var(--white);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+.portal-header h1{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark)}
+.portal-body{padding:40px 32px;max-width:760px;margin:0 auto}
+.portal-welcome{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,46px);font-weight:400;color:var(--dark);margin-bottom:6px}
+.portal-sub{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe);margin-bottom:36px}
+.step-container{display:flex;flex-direction:column;gap:6px}
+.step-item{border:1px solid var(--border);overflow:hidden;transition:border-color .3s;background:var(--white)}
+.step-item.unlocked{border-color:var(--dark)}
+.step-item.completed{border-color:var(--gold);background:var(--cream)}
+.step-item.locked{opacity:.45;pointer-events:none}
+.step-item.next-up{opacity:.8;border-color:var(--border)}
+.step-header{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer}
+.step-num{width:30px;height:30px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:300;color:var(--taupe);flex-shrink:0}
+.step-item.unlocked .step-num{border-color:var(--dark);color:var(--dark)}
+.step-item.completed .step-num{background:var(--dark);color:var(--cream);border-color:var(--dark)}
+.step-title-wrap{flex:1}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--dark)}
+.step-item.locked .step-title{color:var(--taupe)}
+.step-status{font-size:8px;font-weight:300;letter-spacing:.15em;margin-top:2px;text-transform:uppercase;color:var(--taupe)}
+.step-item.unlocked .step-status{color:var(--gold2)}
+.step-arrow{color:var(--taupe);font-size:11px}
+.step-body{display:none;padding:0 22px 22px;border-top:1px solid var(--border)}
+.step-body.open{display:block}
+.step-content{font-size:13px;color:var(--dark);line-height:1.8;margin-bottom:14px;padding-top:18px}
+.step-content a{color:var(--gold2);text-decoration:none;font-weight:300}
+.step-content strong{color:var(--dark);font-weight:300}
+.complete-step-btn{padding:11px 28px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
+.complete-step-btn:hover{background:var(--gold)}
+.wait-notice{padding:10px 14px;border:1px solid var(--border);font-size:12px;color:var(--taupe);background:var(--cream);font-style:italic;font-family:'Cormorant Garamond',serif}
+.substep{display:flex;gap:12px;align-items:flex-start;background:var(--cream);border:1px solid var(--border);padding:14px 16px;border-left:3px solid var(--gold)}
+.substep-num{min-width:22px;height:22px;border-radius:50%;background:var(--dark);color:var(--cream);font-size:10px;font-weight:400;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:'Inter',sans-serif}
+.substep span:last-child{font-size:13px;color:var(--dark);line-height:1.7}
+
+/* CONTACT BUBBLE */
+.contact-bubble{
+  position:fixed;bottom:28px;right:28px;
+  display:flex;align-items:center;gap:12px;
+  background:var(--dark);color:var(--cream);
+  padding:12px 18px 12px 14px;
+  border-radius:40px;
+  box-shadow:0 4px 24px rgba(0,0,0,0.18);
+  text-decoration:none;
+  z-index:9990;
+  transition:all .3s;
+  cursor:pointer;
+}
+.contact-bubble:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.22)}
+.contact-bubble-icon{font-size:20px;line-height:1}
+.contact-bubble-text{display:flex;flex-direction:column;gap:1px}
+.contact-bubble-label{font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--blush);font-family:'Inter',sans-serif}
+.contact-bubble-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;color:var(--cream);line-height:1.2}
+.contact-bubble-num{font-size:10px;font-weight:300;letter-spacing:.1em;color:var(--gold);font-family:'Inter',sans-serif}
+.contact-bubble:hover .contact-bubble-num{color:var(--cream)}
+.contact-bubble:hover .contact-bubble-label{color:rgba(255,255,255,0.7)}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--dark);color:var(--cream);padding:12px 28px;font-family:'Inter',sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;z-index:9999;transition:transform .4s;pointer-events:none;text-transform:uppercase}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* HIDDEN NAV */
+.hidden-nav{display:none}
+
+@media(max-width:700px){
+  .top-nav{grid-template-columns:1fr;text-align:center;gap:12px}
+  .nav-left,.nav-right{display:none}
+  .hero{padding:40px 20px 32px}
+  .hero p{word-break:break-word}
+  .video-block{max-width:100%;margin:0 auto 24px}
+  .video-block::before{display:none}
+  .video-badge-circle{display:none}
+  .section{padding:40px 16px}
+  .cards-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .admin-stats{grid-template-columns:1fr 1fr}
+  .admin-table-head,.recruit-row{grid-template-columns:1fr 1fr}
+  .stats-row{grid-template-columns:1fr 1fr;gap:0}
+  .time-slots{grid-template-columns:1fr 1fr}
+  .main-cta{padding:16px 28px;font-size:10px;width:90%;display:block;margin:0 auto}
+  #continue-btn{width:90%;font-size:11px;padding:16px 20px}
+  .about-strip{grid-template-columns:1fr;gap:32px;padding:0 20px}
+  .testimonials-strip{padding:0 20px}
+  .cal-inner{padding:40px 16px}
+  .form-inner{padding:40px 16px}
+  .quiz-inner{padding:40px 16px}
+  .confirm-inner{padding:40px 16px}
+  .cta-section{padding:56px 20px}
+  .login-box{padding:36px 24px}
+  .side-menu{width:85vw}
+  #calc-grid{grid-template-columns:1fr !important}
+  #calc-grid>div:nth-child(2){display:none}
+  #income-calc{padding:40px 16px}
+  #income-calc>div[style*="max-width:480px"]{max-width:100% !important}
+  #calc-before-num,#calc-after-num{font-size:36px !important}
+  .recruit-row{display:flex;flex-direction:column;gap:8px;padding:16px}
+  .admin-body{padding:16px}
+  .portal-body{padding:24px 16px}
+  input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;touch-action:pan-x}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--dark);cursor:pointer;border:2px solid var(--gold)}
+  .cal-days{gap:4px}
+  .cal-day{font-size:14px;min-height:36px}
+  .time-slots{gap:8px}
+  .time-slot{padding:14px 8px;font-size:12px}
+  .step-item{padding:0}
+  .step-header{padding:16px}
+  #bottom-banner{padding:8px 0;font-size:8px}
+
+  /* Touch fix: replicate hover states on tap for info-card and svc-card */
+  .info-card.touch-active{background:var(--cream2);box-shadow:0 0 24px 4px rgba(216,184,192,0.07),0 0 48px 12px rgba(216,184,192,0.03)}
+  .info-card.touch-active::after{width:100%}
+  .info-card.touch-active .card-front{opacity:0;transform:translateY(-6px)}
+  .info-card.touch-active .card-back{opacity:1;transform:translateY(0)}
+  .svc-card.touch-active{background:var(--cream2) !important}
+  .svc-card.touch-active .svc-bar{width:100% !important}
+}
+
+/* ============ HAMBURGER MENU ============ */
+.hamburger{position:fixed;top:20px;right:24px;z-index:9999;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:14px 18px;background:transparent;border:1px solid rgba(232,221,208,0.22);backdrop-filter:blur(8px);transition:all .35s;box-shadow:0 0 24px 4px rgba(216,184,192,0.08)}
+.hamburger span{display:block;width:22px;height:1px;background:var(--dark);transition:all .35s}
+.hamburger span:nth-child(2){width:14px;align-self:flex-end}
+.hamburger:hover{border-color:rgba(232,221,208,0.55);background:rgba(232,221,208,0.06);box-shadow:0 0 32px 8px rgba(216,184,192,0.14)}
+.hamburger:hover span{background:var(--beige-bright)}
+.hamburger:hover span:nth-child(2){width:22px}
+.hamburger-label{font-size:7px;font-weight:300;letter-spacing:.22em;color:var(--taupe);text-transform:uppercase;margin-top:1px;font-family:'Inter',sans-serif;transition:color .3s}
+.hamburger:hover .hamburger-label{color:var(--dark)}
+
+.side-menu{position:fixed;top:0;right:-320px;width:300px;height:100vh;background:var(--white);border-left:1px solid var(--border);z-index:9998;transition:right .4s cubic-bezier(.4,0,.2,1);padding:80px 40px 40px;display:flex;flex-direction:column;gap:0;box-shadow:-8px 0 32px rgba(0,0,0,0.06)}
+.side-menu.open{right:0}
+.side-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.15);z-index:9997;display:none;backdrop-filter:blur(2px)}
+.side-menu-overlay.open{display:block}
+
+.side-menu-label{font-size:8px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.side-menu-item{display:flex;flex-direction:column;gap:4px;padding:20px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s}
+.side-menu-item:hover .side-item-title{color:var(--gold2)}
+.side-item-icon{font-size:20px;margin-bottom:4px}
+.side-item-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--dark);transition:color .2s}
+.side-item-desc{font-size:10px;color:var(--taupe);letter-spacing:.1em;font-style:italic;font-family:'Cormorant Garamond',serif}
+
+.side-menu-footer{margin-top:auto;font-size:9px;color:var(--border);letter-spacing:.15em;text-transform:uppercase;font-family:'Inter',sans-serif}
+
+/* Login screen overlay */
+#page-admin-login,#page-portal-login{
+  background:var(--cream);
+  position:relative;
+}
+#page-admin-login::before,#page-portal-login::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--cream2) 0%,var(--white) 60%);
+  z-index:0;
+}
+.login-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 20px}
+.login-brand{text-align:center;margin-bottom:48px}
+.login-brand h1{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:var(--dark);margin-bottom:4px}
+.login-brand p{font-size:8px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--taupe)}
+.login-brand .login-brand-divider{width:40px;height:1px;background:var(--gold);margin:12px auto}
+.login-box{width:100%;max-width:400px;background:var(--white);border:1px solid var(--border);padding:48px 40px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.05)}
+.login-icon{font-size:32px;margin-bottom:20px;display:block}
+.login-box h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:var(--dark);margin-bottom:6px}
+.login-box .login-role{font-size:8px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:24px;display:block}
+.login-box .login-desc{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--taupe);margin-bottom:28px;line-height:1.6}
+.login-input-wrap{position:relative;margin-bottom:16px}
+.login-input-wrap input{width:100%;background:var(--cream);border:1px solid var(--border);border-bottom:2px solid var(--border);color:var(--dark);padding:15px 16px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:all .2s;text-align:center;letter-spacing:.1em}
+.login-input-wrap input:focus{border-color:var(--dark);border-bottom-color:var(--dark);background:var(--white)}
+.login-submit{width:100%;padding:15px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;margin-bottom:20px}
+.login-submit:hover{background:var(--gold)}
+.login-err{color:#b00;font-size:11px;margin-bottom:14px;font-style:italic;display:none;font-family:'Cormorant Garamond',serif}
+.login-switch{padding-top:20px;border-top:1px solid var(--border);font-size:10px;color:var(--taupe);letter-spacing:.1em}
+.login-switch a{color:var(--gold2);text-decoration:none;font-weight:300;letter-spacing:.1em}
+.login-switch a:hover{color:var(--dark)}
+.login-back{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);cursor:pointer;text-decoration:none;transition:color .2s;background:none;border:none;font-family:'Inter',sans-serif}
+.login-back:hover{color:var(--dark)}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+
+<!-- Side menu overlay -->
+<div class="side-menu-overlay" id="menu-overlay" onclick="toggleMenu()"></div>
+
+<!-- Side menu -->
+<div class="side-menu" id="side-menu">
+  <button onclick="toggleMenu()" style="position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;font-size:18px;color:var(--taupe);font-family:Jost,sans-serif;padding:8px">✕</button>
+  <p class="side-menu-label">Navigation</p>
+  <div class="side-menu-item" onclick="showPage('landing');toggleMenu()">
+    <span class="side-item-icon">🏠</span>
+    <span class="side-item-title">Home</span>
+    <span class="side-item-desc">Back to the main page</span>
+  </div>
+  <div class="side-menu-item" onclick="showPage('services');toggleMenu()">
+    <span class="side-item-icon">🛡️</span>
+    <span class="side-item-title">What is Insurance?</span>
+    <span class="side-item-desc">Products & carriers we offer</span>
+  </div>
+  <div class="side-menu-item" onclick="goToQuiz();toggleMenu()">
+    <span class="side-item-icon">✍️</span>
+    <span class="side-item-title">Apply Now</span>
+    <span class="side-item-desc">See if it's a good fit</span>
+  </div>
+  <div style="margin-top:auto;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:24px;justify-content:center">
+    <span onclick="showPage('admin-login');toggleMenu()" style="font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);cursor:pointer;transition:color .25s" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--taupe)'">Owner Login</span>
+    <span style="font-size:9px;color:var(--taupe);opacity:0.35">·</span>
+    <span onclick="showPage('portal-login');toggleMenu()" style="font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);cursor:pointer;transition:color .25s" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--taupe)'">Team Login</span>
+  </div>
+  <div class="side-menu-footer">Nansi Hanna · Elite Motional Financial</div>
+</div>
+
+
+<!-- Fixed hamburger menu button — outside all pages so it's always visible -->
+<button class="hamburger" onclick="toggleMenu()" id="hamburger-btn" aria-label="Open menu">
+  <span></span>
+  <span></span>
+  <span></span>
+  <div class="hamburger-label">Menu</div>
+</button>
+
+<!-- ===== LANDING ===== -->
+<div id="page-landing" class="page active">
+
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="#" onclick="showPage('landing')">Home</a>
+      <a href="#" onclick="showPage('services')">What is Insurance?</a>
+    </div>
+    <div class="nav-center">
+      <h1>Nansi Hanna</h1>
+      <p>Elite Motional Financial</p>
+    </div>
+    <div class="nav-right">
+    </div>
+  </nav>
+
+  <div class="hero">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vw,64px);font-weight:700;color:var(--dark);margin:0 0 0;line-height:1.05;letter-spacing:.01em;animation:fadeIn .7s ease both">I used to work 3 jobs making only $2K a month. Now I make that in <em style="color:var(--gold2);font-style:italic">30 minutes.</em></p>
+    <div style="margin-bottom:40px"></div>
+
+    <!-- VIDEO -->
+    <div class="video-block">
+      <div class="video-frame">
+        <div class="video-inner">
+          <a href="https://www.youtube.com/watch?v=CWUlLByKYA4" target="_blank" style="display:block;text-decoration:none">
+            <div class="video-inner">
+              <img src="https://img.youtube.com/vi/CWUlLByKYA4/maxresdefault.jpg" alt="Agency Overview">
+              <div class="video-cinematic-overlay"></div>
+              <div class="video-play-btn"><span>▶</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="video-badge-circle">
+        <span>Agency<br>Overview</span>
+      </div>
+    </div>
+
+
+    <!-- HOW IT WORKS TOGGLE -->
+    <div style="text-align:center;margin:56px auto 0;max-width:700px;padding-bottom:80px;position:relative">
+      <button class="main-cta" onclick="toggleHowItWorks()" id="how-it-works-btn" style="position:relative">How I Escaped the 9–5 ↓</button>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS (hidden until clicked) -->
+  <div id="how-it-works-section" style="display:none;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(216,184,192,0.05) 0%,transparent 70%)">
+    <div class="section">
+      <div class="section-header">
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="section-title">Everything you need to <em>know.</em></h2>
+      </div>
+      <div class="cards-grid">
+        <div class="info-card">
+          <div class="card-front">
+            <div class="card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c8a94e" stroke-width="1.5" style="vertical-align:middle;margin-right:8px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>How You Get Paid</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-label">Commission Structure</div>
+            <div class="card-back-text">Client pays <strong>$100/month</strong> × 12 = <strong>$1,200/year</strong>. At <strong>85% commission</strong> you earn <strong>$1,020 per policy</strong> in 3 days. Scale up to <strong>100%</strong> as you grow.</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-front">
+            <div class="card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c84a4a" stroke-width="1.5" style="vertical-align:middle;margin-right:8px"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Commission Rate</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-label">Your Rate</div>
+            <div class="card-back-text">Start at <strong>85%</strong> — one of the highest in the industry. Grow to <strong>100%</strong> as you produce. No ceiling. Ever.</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-front">
+            <div class="card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4a7ec8" stroke-width="1.5" style="vertical-align:middle;margin-right:8px"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Cost to Start</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-label">What It Costs</div>
+            <div class="card-back-text">Only cost is your government-required exam & license. We cover the rest — <strong>free course</strong> + <strong>2½ months of free leads</strong> included. Average agent makes <strong>$15K</strong> their first month.</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-front">
+            <div class="card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a06cc8" stroke-width="1.5" style="vertical-align:middle;margin-right:8px"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Do I Need Experience?</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-label">Zero Experience Needed</div>
+            <div class="card-back-text">Agents come from restaurants, warehouses, barbershops — and hit <strong>$15K+</strong> their first month. We train you from day one.</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-front">
+            <div class="card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4a9e6a" stroke-width="1.5" style="vertical-align:middle;margin-right:8px"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Earning Potential</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-label">Uncapped Income</div>
+            <div class="card-back-text">Earning potential is <strong>uncapped</strong>. You can make anywhere from <strong>$5K to $250K a month</strong> — it's simply a matter of how much work you put in.</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-front">
+            <div class="card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e8a84a" stroke-width="1.5" style="vertical-align:middle;margin-right:8px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>How Long Until I Make Money?</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-label">Timeline</div>
+            <div class="card-back-text">First commission within <strong>30 days</strong> of licensing. With 2–3 months of dedication, agents consistently hit <strong>$15K+/month.</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAGICAL INCOME CALCULATOR -->
+    <div id="income-calc" style="padding:64px 32px;text-align:center;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(216,184,192,0.08) 0%,transparent 70%);pointer-events:none"></div>
+      <p style="font-size:9px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--taupe);margin-bottom:16px">Your Reality Check</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,48px);font-weight:300;color:var(--dark);line-height:1.1;margin-bottom:8px">What if you started <em style="font-style:italic;color:var(--taupe)">today?</em></h2>
+      <p style="font-size:11px;color:var(--taupe);font-weight:300;margin-bottom:48px;letter-spacing:.04em">Drag to your current income. Watch what's possible.</p>
+
+      <!-- SLIDER -->
+      <div style="max-width:480px;margin:0 auto 48px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+          <span style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)">Your current monthly income</span>
+          <span id="calc-current-label" style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);font-weight:400">$3,000</span>
+        </div>
+        <input type="range" id="calc-slider" min="500" max="20000" step="500" value="3000"
+          style="width:100%;-webkit-appearance:none;appearance:none;height:1px;background:var(--border);outline:none;cursor:pointer;accent-color:var(--dark);touch-action:pan-x">
+      </div>
+
+      <!-- BEFORE / AFTER -->
+      <div id="calc-grid" style="max-width:600px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center">
+
+        <!-- BEFORE -->
+        <div style="padding:32px 24px;border:0.5px solid var(--border);background:var(--cream);position:relative">
+          <p style="font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);margin-bottom:20px">Where You Are</p>
+          <div id="calc-before-num" style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-soft);line-height:1;transition:all .4s ease">$3,000</div>
+          <p style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:8px;opacity:0.6">per month</p>
+          <div style="margin-top:20px;padding-top:20px;border-top:0.5px solid var(--border)">
+            <div id="calc-before-year" style="font-size:12px;color:var(--taupe);font-weight:300;transition:all .4s ease">$36,000 / year</div>
+            <div style="font-size:9px;color:var(--taupe);opacity:0.5;margin-top:4px;letter-spacing:.08em">trading time for money</div>
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div style="width:0.5px;height:30px;background:var(--border)"></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--taupe)" stroke-width="1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <div style="width:0.5px;height:30px;background:var(--border)"></div>
+        </div>
+
+        <!-- AFTER -->
+        <div style="padding:32px 24px;border:0.5px solid rgba(255,255,255,0.22);background:var(--cream2);position:relative;box-shadow:0 0 40px 16px rgba(255,255,255,0.28),0 0 80px 36px rgba(255,255,255,0.16),0 0 130px 60px rgba(20,140,60,0.10),0 0 200px 90px rgba(216,184,192,0.08)">
+          <p style="font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);margin-bottom:20px">Where You Could Be</p>
+          <div id="calc-after-num" style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--dark);line-height:1;transition:all .6s cubic-bezier(.34,1.56,.64,1)">$15,300</div>
+          <p style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:8px;opacity:0.6">per month at Elite Motional Financial</p>
+          <div style="margin-top:20px;padding-top:20px;border-top:0.5px solid rgba(20,140,60,0.25)">
+            <div id="calc-after-year" style="font-size:12px;color:var(--dark);font-weight:300;transition:all .6s ease">$183,600 / year</div>
+            <div id="calc-multiplier" style="font-size:9px;color:var(--taupe);margin-top:4px;letter-spacing:.08em;transition:all .4s ease">5.1× your current income</div>
+          </div>
+          <!-- glow pulse dot -->
+          <div style="position:absolute;top:16px;right:16px;width:6px;height:6px;border-radius:50%;background:var(--gold);animation:glowPulse 2s ease-in-out infinite"></div>
+        </div>
+      </div>
+
+      <!-- GAP LINE -->
+      <div style="max-width:600px;margin:24px auto 0;padding:16px 24px;border:0.5px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)">The gap you're leaving behind</span>
+        <span id="calc-gap" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--dark);transition:all .5s ease">$12,300 / mo</span>
+      </div>
+      <p style="font-size:9px;color:var(--taupe);margin-top:12px;font-style:italic;opacity:0.6">Based on FFL's average first-month agent income at 85% commission</p>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div style="text-align:center;padding:48px 32px 64px">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,26px);font-weight:300;font-style:italic;color:var(--gold2);letter-spacing:.06em;margin-bottom:24px">It's simple, not easy...</p>
+      <button id="continue-btn" onclick="goToQuiz()">See If It's a Good Fit →</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SERVICES ===== -->
+<div id="page-services" class="page">
+
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="#" onclick="showPage('landing')">Home</a>
+      <a href="#" onclick="showPage('services')" style="color:var(--dark)">What is Insurance?</a>
+    </div>
+    <div class="nav-center">
+      <h1>Nansi Hanna</h1>
+      <p>Elite Motional Financial</p>
+    </div>
+    <div class="nav-right">
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <div style="text-align:center;padding:72px 40px 56px;border-bottom:1px solid var(--border);background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(232,221,208,0.12) 0%,transparent 70%)">
+    <p style="font-size:9px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--taupe);margin-bottom:18px;animation:fadeIn .6s ease both">What We Do</p>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,76px);font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--dark);line-height:1;margin-bottom:14px;animation:fadeIn .7s .1s ease both">Family First Life</h1>
+    <div style="width:0;height:1px;background:linear-gradient(90deg,transparent,var(--beige),var(--gold),var(--beige-bright),transparent);margin:0 auto 32px;animation:expandW .8s .3s ease forwards"></div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.2vw,22px);font-style:italic;color:var(--gold2);max-width:620px;margin:0 auto;line-height:1.7;animation:fadeIn .7s .3s ease both">Protecting families. Building legacies. Creating financial freedom — one policy at a time.</p>
+  </div>
+
+  <!-- WHO WE ARE -->
+  <div style="max-width:900px;margin:0 auto;padding:72px 48px 0;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div style="animation:fadeIn .8s .2s ease both">
+      <p style="font-size:8px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:14px">Who We Are</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,40px);font-weight:400;color:var(--dark);line-height:1.2;margin-bottom:20px">America's #1 Independent Life Insurance Agency</h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe);line-height:1.85;margin-bottom:18px">Family First Life (FFL) is a national insurance marketing organization dedicated to one mission: putting families first. We partner with the top-rated carriers in the country to offer clients the very best in life insurance, mortgage protection, and final expense coverage.</p>
+      <p style="font-size:13px;color:var(--taupe);line-height:1.9;font-weight:300">Founded on the belief that every family deserves financial security, FFL has grown into a powerhouse of over 35,000 licensed agents across the United States — all working to protect the people who matter most.</p>
+    </div>
+    <div style="animation:fadeIn .8s .35s ease both">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)">
+        <div style="background:var(--cream2);padding:32px 24px;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--gold);letter-spacing:.05em">35K+</div>
+          <div style="font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:6px">Licensed Agents</div>
+        </div>
+        <div style="background:var(--cream2);padding:32px 24px;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--gold);letter-spacing:.05em">#1</div>
+          <div style="font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:6px">Independent IMO</div>
+        </div>
+        <div style="background:var(--cream2);padding:32px 24px;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--gold);letter-spacing:.05em">85%</div>
+          <div style="font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:6px">Starting Commission</div>
+        </div>
+        <div style="background:var(--cream2);padding:32px 24px;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--gold);letter-spacing:.05em">A+</div>
+          <div style="font-size:8px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:6px">Carrier Ratings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE SELL -->
+  <div style="max-width:1000px;margin:72px auto 0;padding:0 48px">
+    <div style="text-align:center;margin-bottom:52px;animation:fadeIn .7s .1s ease both">
+      <p style="font-size:8px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px">Our Products</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:400;color:var(--dark);letter-spacing:.05em">What We <em style="font-style:italic;color:var(--gold2)">Sell</em></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);animation:fadeIn .8s .2s ease both">
+
+      <!-- FINAL EXPENSE -->
+      <div class="svc-card" style="background:var(--white);padding:40px 30px;position:relative;overflow:hidden;transition:background .3s">
+        <div style="font-size:32px;margin-bottom:18px">🕊️</div>
+        <p style="font-size:8px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px">Most Popular</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:14px">Final Expense Insurance</h3>
+        <p style="font-size:13px;color:var(--taupe);line-height:1.85;font-weight:300;margin-bottom:20px">Affordable whole-life policies designed to cover funeral costs, medical bills, and other end-of-life expenses — so families are never left with a financial burden during the hardest moments of their lives.</p>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Coverage from $5,000 to $50,000</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>No medical exam required</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Guaranteed acceptance options</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Premiums never increase</li>
+        </ul>
+        <div style="position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s" class="svc-bar"></div>
+      </div>
+
+      <!-- MORTGAGE PROTECTION -->
+      <div class="svc-card" style="background:var(--white);padding:40px 30px;position:relative;overflow:hidden;transition:background .3s">
+        <div style="font-size:32px;margin-bottom:18px">🏡</div>
+        <p style="font-size:8px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px">High Demand</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:14px">Mortgage Protection</h3>
+        <p style="font-size:13px;color:var(--taupe);line-height:1.85;font-weight:300;margin-bottom:20px">Term life policies tailored specifically to pay off a client's mortgage if they pass away unexpectedly — ensuring their family keeps the home they built together, no matter what.</p>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Tied to your exact mortgage balance</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Return of premium options</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Disability & critical illness riders</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Coverage up to $1,000,000+</li>
+        </ul>
+        <div style="position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s" class="svc-bar"></div>
+      </div>
+
+      <!-- TERM & WHOLE LIFE -->
+      <div class="svc-card" style="background:var(--white);padding:40px 30px;position:relative;overflow:hidden;transition:background .3s">
+        <div style="font-size:32px;margin-bottom:18px">🛡️</div>
+        <p style="font-size:8px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px">Comprehensive</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:14px">Term & Whole Life</h3>
+        <p style="font-size:13px;color:var(--taupe);line-height:1.85;font-weight:300;margin-bottom:20px">Whether a family needs short-term income replacement or permanent lifelong coverage with cash value, we have the right policy from the nation's top-rated carriers to fit every budget.</p>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>10, 20, 30-year term options</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Whole life with cash accumulation</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Instant approval on many plans</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Coverage from $50K to $5M</li>
+        </ul>
+        <div style="position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s" class="svc-bar"></div>
+      </div>
+
+      <!-- IUL -->
+      <div class="svc-card" style="background:var(--white);padding:40px 30px;position:relative;overflow:hidden;transition:background .3s">
+        <div style="font-size:32px;margin-bottom:18px">📈</div>
+        <p style="font-size:8px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px">Wealth Building</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:14px">Indexed Universal Life (IUL)</h3>
+        <p style="font-size:13px;color:var(--taupe);line-height:1.85;font-weight:300;margin-bottom:20px">A powerful permanent life insurance policy that builds tax-advantaged cash value tied to a market index — giving clients both lifelong protection and a vehicle for long-term wealth growth without direct market risk.</p>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Coverage from $50,000 to $500,000+</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Tax-free cash value accumulation</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Index-linked growth, 0% floor</li>
+          <li style="font-size:11px;color:var(--taupe);display:flex;gap:8px;align-items:flex-start"><span style="color:var(--gold);margin-top:1px">—</span>Retirement income supplement</li>
+        </ul>
+        <div style="position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s" class="svc-bar"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOP CARRIERS -->
+  <div style="max-width:900px;margin:72px auto 0;padding:0 48px;text-align:center;animation:fadeIn .8s .2s ease both">
+    <p style="font-size:8px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--taupe);margin-bottom:32px">Carriers We Work With</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px">
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Americo</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Mutual of Omaha</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">AMAM</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Aetna</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Chubb</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Corebridge</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Transamerica</span>
+      <span style="padding:10px 20px;border:1px solid var(--border);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)">Independent Broker</span>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div style="text-align:center;padding:80px 40px;margin-top:72px;background:var(--cream2);border-top:1px solid var(--border)">
+    <p style="font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px">Ready to Help Families?</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4.5vw,54px);font-weight:400;color:var(--dark);margin-bottom:10px;letter-spacing:.05em">Join Nansi &amp; the FFL <em style="font-style:italic;color:var(--gold2)">Team</em></h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--taupe);margin-bottom:36px">Sell products that change lives. Build a career you're proud of.</p>
+    <button onclick="goToQuiz()" style="display:inline-block;padding:16px 56px;background:transparent;color:var(--beige-bright);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;border:1px solid rgba(232,221,208,0.50);cursor:pointer;transition:all .4s;box-shadow:0 0 28px 6px rgba(232,221,208,0.14)">Apply With Me →</button>
+  </div>
+
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="page-quiz" class="page">
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="#" onclick="showPage('landing')">Home</a>
+      <a href="#" onclick="showPage('services')">What is Insurance?</a>
+    </div>
+    <div class="nav-center">
+      <h1>Nansi Hanna</h1>
+      <p>Elite Motional Financial</p>
+    </div>
+    <div class="nav-right">
+    </div>
+  </nav>
+  <div style="display:flex;align-items:center;justify-content:center">
+  <div class="quiz-inner">
+    <div class="quiz-progress" id="quiz-progress"></div>
+    <div class="quiz-q-num" id="quiz-q-num">Question 1 of 6</div>
+    <div class="quiz-question" id="quiz-question"></div>
+    <div class="quiz-options" id="quiz-options"></div>
+    <button class="quiz-next" id="quiz-next" onclick="nextQuestion()">Next →</button>
+  </div>
+  </div>
+</div>
+
+<!-- ===== NOT A FIT ===== -->
+<div id="page-not-a-fit" class="page" style="min-height:100vh;background:var(--white);align-items:center;justify-content:center">
+  <div style="max-width:480px;width:100%;padding:80px 32px;text-align:center">
+    <p style="font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);margin-bottom:24px">Application Result</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,44px);font-weight:300;color:var(--dark);margin-bottom:16px;line-height:1.2">It doesn't look like<br><em style="font-style:italic;color:var(--taupe)">this is a good fit</em></h2>
+    <div style="width:40px;height:0.5px;background:var(--border);margin:24px auto"></div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe);line-height:1.8;margin-bottom:32px">Based on your answers, this opportunity may not align with where you are right now — and that's okay. This role requires a very specific mindset and commitment level.</p>
+    <button onclick="showPage('landing')" style="padding:12px 32px;background:transparent;color:var(--dark);border:0.5px solid var(--border);font-family:'Inter',sans-serif;font-size:9px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;cursor:pointer">Back to Home</button>
+  </div>
+</div>
+
+<!-- ===== FORM ===== -->
+<div id="page-form" class="page">
+  <div class="form-inner">
+    <div class="form-eyebrow">You Made It This Far</div>
+    <h2 class="form-title">This Might Be a Good Fit.</h2>
+    <p class="form-sub">Let's schedule a 5-minute call.</p>
+    <div class="form-grid">
+      <div class="form-field"><label>First Name</label><input type="text" id="f-first" placeholder="First name"></div>
+      <div class="form-field"><label>Last Name</label><input type="text" id="f-last" placeholder="Last name"></div>
+      <div class="form-field"><label>Email Address</label><input type="email" id="f-email" placeholder="your@email.com"></div>
+      <div class="form-field"><label>Phone Number</label><input type="tel" id="f-phone" placeholder="(000) 000-0000"></div>
+      <div class="form-field full"><label>Instagram Handle <span style="font-weight:300;color:var(--taupe);font-size:10px;letter-spacing:.05em">(optional)</span></label><input type="text" id="f-instagram" placeholder="@yourhandle"></div>
+      <div class="form-field full"><label>State You Live In</label>
+        <select id="f-state">
+          <option value="">Select your state...</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+        </select>
+      </div>
+    </div>
+    <button class="submit-btn" onclick="submitForm()">Submit & Book My Call →</button>
+  </div>
+</div>
+
+<!-- ===== CALENDAR ===== -->
+<div id="page-calendar" class="page">
+  <div style="text-align:center;padding:48px 32px 20px">
+    <p style="font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px">Almost There</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,46px);font-weight:400;color:var(--dark);margin-bottom:6px">Book Your Interview</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe)">Pick a time that works for you — Nansi will confirm within 24 hours.</p>
+  </div>
+  <!-- Calendly inline widget -->
+  <div class="calendly-inline-widget"
+    data-url="https://calendly.com/nansihanna-ffl/new-meeting?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=c8a96e"
+    style="min-width:320px;height:700px;margin:0 auto;max-width:900px">
+  </div>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</div>
+
+<!-- ===== CONFIRM ===== -->
+<div id="page-confirm" class="page">
+  <div class="confirm-inner">
+    <div class="confirm-check">✓</div>
+    <h2 class="confirm-title">You're Booked.</h2>
+    <p class="confirm-sub">A confirmation has been sent to your email and phone. Nansi will see you soon.</p>
+    <div class="confirm-details" id="confirm-details"></div>
+    <p class="confirm-note">Check your inbox and texts for your appointment details.</p>
+  </div>
+</div>
+
+<!-- ===== ADMIN LOGIN ===== -->
+<div id="page-admin-login" class="page">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <h1>Nansi Hanna</h1>
+      <div class="login-brand-divider"></div>
+      <p>Elite Motional Financial</p>
+    </div>
+    <div class="login-box">
+      <span class="login-icon">🔐</span>
+      <h2>Owner Login</h2>
+      <span class="login-role">Recruit Dashboard Access</span>
+      <p class="login-desc">Enter your password to view all recruits, manage ranks, and track progress.</p>
+      <div class="login-input-wrap">
+        <input type="password" id="admin-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')adminLogin()">
+      </div>
+      <div class="login-err" id="admin-err">Incorrect password. Please try again.</div>
+      <button class="login-submit" onclick="adminLogin()">View My Recruits →</button>
+      <div class="login-switch">Team member? <a href="#" onclick="showPage('portal-login')">Team Login →</a></div>
+    </div>
+    <button class="login-back" onclick="showPage('landing')">← Back to Site</button>
+  </div>
+</div>
+
+<!-- ===== ADMIN DASHBOARD ===== -->
+<div id="page-admin" class="page">
+  <div class="admin-header">
+    <h1>Recruit Dashboard</h1>
+    <div style="display:flex;align-items:center;gap:20px"><span id="admin-date"></span><button onclick="showPage('landing')" style="padding:8px 16px;background:var(--dark);color:var(--cream);border:none;font-family:Jost,sans-serif;font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;cursor:pointer">Back to Site</button></div>
+  </div>
+  <div class="admin-body">
+    <div class="admin-stats">
+      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Recruits</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-a">0</div><div class="stat-label">A-List</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-recruited">0</div><div class="stat-label">Recruited</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-pending">0</div><div class="stat-label">Pending</div></div>
+    </div>
+    <div class="admin-table-wrap">
+      <div class="admin-table-head" style="grid-template-columns:2fr 2fr 1fr 1fr 1.5fr 1fr;background:var(--dark)">
+        <span style="color:var(--taupe)">Name</span><span style="color:var(--taupe)">Contact & Appointment</span><span style="color:var(--taupe)">Rank</span><span style="color:var(--taupe)">Progress</span><span style="color:var(--taupe)">Action</span><span style="color:var(--taupe)">Answers</span>
+      </div>
+      <div id="recruit-table"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PORTAL LOGIN ===== -->
+<div id="page-portal-login" class="page">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <h1>Nansi Hanna</h1>
+      <div class="login-brand-divider"></div>
+      <p>Elite Motional Financial</p>
+    </div>
+    <div class="login-box">
+      <span class="login-icon">👥</span>
+      <h2>Team Login</h2>
+      <span class="login-role">Onboarding Portal Access</span>
+      <p class="login-desc">Enter your access code to view your onboarding steps and track your progress to getting licensed.</p>
+      <div class="login-input-wrap">
+        <input type="password" id="portal-pw" placeholder="Enter access code" onkeydown="if(event.key==='Enter')portalLogin()">
+      </div>
+      <div class="login-err" id="portal-err">Incorrect access code. Please try again.</div>
+      <button class="login-submit" onclick="portalLogin()">Access My Portal →</button>
+      <div class="login-switch">Owner? <a href="#" onclick="showPage('admin-login')">Owner Login →</a></div>
+    </div>
+    <button class="login-back" onclick="showPage('landing')">← Back to Site</button>
+  </div>
+</div>
+
+<!-- ===== PORTAL ===== -->
+<div id="page-portal" class="page">
+  <div class="portal-header">
+    <h1>Your Onboarding Portal</h1>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="sms:6195587851" style="display:flex;align-items:center;gap:8px;text-decoration:none;padding:8px 14px;border:1px solid var(--border);background:var(--cream)">
+        <span style="font-size:16px">💬</span>
+        <div style="display:flex;flex-direction:column;gap:1px">
+          <span style="font-size:8px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);font-family:Jost,sans-serif">Have a question?</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--dark)">Contact Nansi</span>
+        </div>
+      </a>
+      <span style="font-size:10px;color:var(--taupe);letter-spacing:.1em;font-weight:300;font-family:Jost,sans-serif">FAMILY FIRST LIFE</span>
+      <button onclick="showPage('landing')" style="padding:8px 16px;background:var(--dark);color:var(--cream);border:none;font-family:Jost,sans-serif;font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;cursor:pointer">Back to Site</button>
+    </div>
+  </div>
+  <div class="portal-body">
+    <h2 class="portal-welcome">Welcome to the Team.</h2>
+    <p class="portal-sub">Complete each step in order. Your progress is tracked automatically.</p>
+    <div id="portal-progress" style="margin-bottom:28px"></div>
+    <div class="step-container" id="step-container"></div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASS = "Nh06122006$";
+const PORTAL_PASS = "123";
+const ADMIN_EMAIL = "eli@elitemotionfinancial.org";
+
+let recruits = JSON.parse(localStorage.getItem("nh_recruits") || "[]");
+let currentRecruit = null;
+let quizAnswers = [];
+let currentQ = 0;
+let selectedDate = null;
+let selectedTime = null;
+let calYear, calMonth;
+let portalSteps = null;
+
+const now = new Date();
+calYear = now.getFullYear();
+calMonth = now.getMonth();
+const minBookDate = new Date();
+minBookDate.setDate(minBookDate.getDate() + 16);
+
+const questions = [
+  {
+    q: "You are three weeks in, results have not come yet. What is your mindset?",
+    opts: ["I trust the process and stay consistent", "I reassess my approach and keep going", "I start to doubt if it is worth it", "I am already looking for something else"]
+  },
+  {
+    q: "What does success mean to you and how badly do you actually want it?",
+    opts: ["Everything — I would sacrifice comfort to get there", "I want it but I need balance too", "I want a better life but I am not sure how far I would go", "I have not really defined what success looks like for me"]
+  },
+  {
+    q: "What is your why? Why do you want to do this?",
+    opts: null,
+    type: "text",
+    placeholder: "Share in 2 to 3 sentences. Be real — this is what matters most."
+  },
+  {
+    q: "How do you handle rejection?",
+    opts: ["I use it as fuel — it makes me work harder", "I take a moment then get back up", "It affects me but I push through", "It is hard for me and slows me down"]
+  }
+];
+
+const qLabels = [
+  "3 weeks in, no results — mindset?",
+  "What does success mean to you?",
+  "What is your why?",
+  "How do you handle rejection?"
+];
+
+const qOpts = [
+  ["I trust the process and stay consistent", "I reassess my approach and keep going", "I start to doubt if it is worth it", "I am already looking for something else"],
+  ["Everything — I would sacrifice comfort to get there", "I want it but I need balance too", "I want a better life but I am not sure how far I would go", "I have not really defined what success looks like for me"],
+  null,
+  ["I use it as fuel — it makes me work harder", "I take a moment then get back up", "It affects me but I push through", "It is hard for me and slows me down"]
+];
+
+const stepsData = [
+  {phase:"PRE-EXAM",title:"Book Your Exam",status:"Start Here",content:"Follow these steps exactly to book your state life insurance licensing exam:<br><br><div class='substep'><span class='substep-num'>1</span><span><strong>Find your state's info sheet</strong> — Click the link below, find your state, and click on its <strong>Info Sheet</strong>.<br><br><a href='https://email.no-reply.a4aleadshub.com/c/eJx0k0-TqjoQxT8N7JhKQkBYZKF3xD-jo8xz_vg2VkgaRSDJDRF0Pv0rfbde3cV92-4-fap-3UccKskM1zjO3y72kyKx3s0AwasvGY_4KE2wL3XLK8WUDiyY5vbEKW-Ay-50KZ6Ebn_1D3pQYLtTZQ7uZoDxIyhxe1SlDwyPohFCMY1SH1peNYcWuo4f4e7f6-2toWU2NZrPF5NVFtfDr6nHqkHbumz077W7jCARFzhNg4iSIqAp8IAjEQdYQCxRlOKEit8lnQPz0FGIRiklAcFJFNAU0YDjMg4IwglFAhckwT6ovrJataAcM1bLi3CVVv6JUVKEJZSUxxElZcjDgmKMAUIZIZkksV8xgkiEUkTxiKAofYKowCOKIQXMBSljj6L_Zdmwk3Om88KxRzKPZFKL7umo9bGBe98jWWfsQwDguvuARzIss2653qJ3kNnJnPmg5G4cfTRz2dadmm_m6XRvEid-rDa5RzKQlfNIeKykFz4jvxGHfyFVyoFVvGHvJOvk7KP-wunEzs-8lhNK9srsxy8nUu2L73S99kh2azf7_rrQu3x_-fp-r1-P5D3ha-GRLN_0nUnWy-VQaOWR7JvTzCOTv6YLO12MqTHH60_Qq2xJ-tnR8kv94yVXYZ7_XKRD8qXzxeTWbofc5G_4i0yHUE0L9emRiWuGIt3WdTJXqvfIBA238999uSJwnUb4OkNJtkYr6ISekeeFy7fPH-00yd_k1iPZS0PVbge1Uvskn9Ly1ZjTJlxePrefu-H8cl4IL3z2G_3IRGgTXubLcFw4dFNoVyXo6rfgTloybirfWN1XEiy7n09opUA4bX3LeNNBqbXyKDresT7O2umLFcAenIOq64P7S4P1HQN3-O-9Hbub_9HZMaHbwx-D2jPyTwAAAP__0K9B-Q' target='_blank' style='font-weight:400;font-size:14px'>→ Click HERE to find your state</a></span></div><br><div class='substep'><span class='substep-num'>2</span><span><strong>Open the Info Sheet</strong> — On that page, click the <strong>Info Sheet link</strong> for your state. It will take you to <strong>Xcel Solutions</strong>.</span></div><br><div class='substep'><span class='substep-num'>3</span><span><strong>Schedule your exam</strong> — On the Xcel Solutions page, scroll down to the <strong>2nd step</strong> that says <em>\"Schedule State Examination\"</em> and click the link.</span></div><br><div class='substep'><span class='substep-num'>4</span><span><strong>Select your exam</strong> — On the scheduling site, make sure you select the <strong>Life Exam</strong>. Pick a date at least <strong>2 weeks + 2 days from today</strong>.</span></div><br><div class='substep'><span class='substep-num'>5</span><span><strong>Take a screenshot</strong> of your exam confirmation and save it — you'll need it for the next step.</span></div><br><div class='wait-notice'>✅ Once booked, mark this step complete to unlock Step 2 where you'll email your confirmation.</div>",completable:true,adminUnlock:false},
+  {phase:"",title:"Email Your Exam Confirmation",status:"Action Required",content:"Email your exam confirmation screenshot to Nansi:<br><br><strong><a href='mailto:eli@elitemotionfinancial.org'>eli@elitemotionfinancial.org</a></strong><br><br>Use the subject line: <strong>Exam Confirmation – [Your Full Name]</strong><br><br>Attach the <strong>screenshot</strong> you took when booking.<br><br>Once sent, mark complete and wait — Nansi will send you a code for the free course.",completable:true,adminUnlock:false},
+  {phase:"",title:"Wait for Admin Response",status:"Pending Review",content:"Your confirmation has been sent. Nansi will review it and unlock your next step.<br><br><div class='wait-notice'>⏳ This step is unlocked by your admin — sit tight!</div>",completable:false,adminUnlock:true},
+  {phase:"STUDYING",title:"Log Into the Free Course",status:"Access Your Training",content:"Your free course access has been approved. Log in using the details Nansi sent you and confirm you can access the material.<br><br>Once you're in, mark this step complete.",completable:true,adminUnlock:false},
+  {phase:"",title:"Study — Main Material",status:"Hit the Books",content:"Go through every module in your course. Take notes. Watch every video. Don't skip anything.<br><br>When you feel confident you've covered the material, mark this step complete.",completable:true,adminUnlock:false},
+  {phase:"",title:"Study Extra Quizlets",status:"Extra Prep",content:"Drill these flashcard sets until you know them cold:<br><br>📚 <a href='https://quizlet.com/244799365/life-insurance-practice-exam-flash-cards/' target='_blank'><strong>Life Insurance Practice Exam Flash Cards</strong></a><br><br>📚 <a href='https://quizlet.com/416762772/life-insurance-exam-questions-flash-cards/' target='_blank'><strong>Life Insurance Exam Questions</strong></a><br><br>📚 <a href='https://quizlet.com/162655458/life-insurance-practice-test-questions-flash-cards/' target='_blank'><strong>Life Insurance Practice Test Questions</strong></a><br><br>Once you feel ready, mark this step complete.",completable:true,adminUnlock:false},
+  {phase:"POST-EXAM",title:"Take Your Exam",status:"Exam Day",content:"You're ready. Show up early. Bring a valid government-issued photo ID. Stay calm — you've put in the work.<br><br>After you <strong>pass</strong>, come back here and mark this step complete.",completable:true,adminUnlock:false},
+  {phase:"",title:"Send Your Pass Results to Admin",status:"Action Required",content:"Congratulations on passing! Now email Nansi your proof:<br><br><strong><a href='mailto:eli@elitemotionfinancial.org'>eli@elitemotionfinancial.org</a></strong><br><br>Subject: <strong>PASSED – [Your Full Name]</strong><br><br>Attach a <strong>screenshot of your license or passing score</strong>. Once sent, mark complete.",completable:true,adminUnlock:false},
+  {phase:"",title:"Admin Verifies Your Results",status:"Under Review",content:"Nansi is reviewing your pass results. Once verified, you'll receive your next-level course password.<br><br><div class='wait-notice'>⏳ This step is unlocked by your admin — hang tight, you're almost there!</div>",completable:false,adminUnlock:true},
+  {phase:"",title:"Receive Your Course Password",status:"Access Granted",content:"Your course password has been sent by Nansi. Use it to access your next-level training and the full agent portal.<br><br><strong>Welcome to the team — officially. 🖤</strong>",completable:true,adminUnlock:false},
+  {phase:"",title:"Get Contracted with Carrier",status:"Final Step",content:"You're licensed and trained — now it's time to get contracted with your carrier so you can start writing business.<br><br>Nansi will provide your Discord and WhatsApp community links once you're contracted.<br><br><strong>The journey starts now.</strong>",completable:true,adminUnlock:false}
+];
+
+function fmtTime(s){if(!isFinite(s)||isNaN(s))return "0:00";return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0")}
+
+function showPage(name){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
+  var el = document.getElementById("page-"+name);
+  if(el) el.classList.add("active");
+  var banner = document.getElementById("bottom-banner");
+  if(banner) banner.style.display = (name==="landing") ? "block" : "none";
+}
+
+var videoWatched = true;
+
+function goToQuiz(){initQuiz();showPage("quiz")}
+function toggleHowItWorks(){
+  var section=document.getElementById("how-it-works-section");
+  var btn=document.getElementById("how-it-works-btn");
+  if(section.style.display==="none"){
+    section.style.display="block";
+    btn.textContent="How It Works ↑";
+    section.scrollIntoView({behavior:"smooth",block:"start"});
+  } else {
+    section.style.display="none";
+    btn.textContent="How It Works ↓";
+  }
+}
+
+function initQuiz(){quizAnswers=[];currentQ=0;renderQuestion()}
+
+function renderQuestion(){
+  var q = questions[currentQ];
+  document.getElementById("quiz-q-num").textContent = "Question "+(currentQ+1)+" of "+questions.length;
+  document.getElementById("quiz-question").textContent = q.q;
+  var opts = document.getElementById("quiz-options");
+  opts.innerHTML = "";
+  var next = document.getElementById("quiz-next");
+  next.classList.remove("visible");
+  next.textContent = currentQ === questions.length-1 ? "See Results" : "Next";
+
+  if(q.type === "text"){
+    var ta = document.createElement("textarea");
+    ta.id = "quiz-text-answer";
+    ta.placeholder = q.placeholder || "Share your answer...";
+    ta.style.cssText = "width:100%;min-height:110px;background:#faf7f2;border:1px solid #e8ddd2;color:#2a2018;padding:14px;font-family:Cormorant Garamond,serif;font-size:16px;outline:none;resize:none;line-height:1.6;transition:border-color .2s";
+    ta.oninput = function(){
+      quizAnswers[currentQ] = this.value.trim();
+      if(this.value.trim().length > 20){next.classList.add("visible")}
+      else{next.classList.remove("visible")}
+    };
+    opts.appendChild(ta);
+    var hint = document.createElement("p");
+    hint.style.cssText = "font-size:10px;color:#9a8878;margin-top:8px;letter-spacing:.1em;font-style:italic";
+    hint.textContent = "2 to 3 sentences minimum required to continue";
+    opts.appendChild(hint);
+  } else {
+    q.opts.forEach(function(o,i){
+      var btn = document.createElement("button");
+      btn.className = "quiz-opt";
+      btn.textContent = o;
+      btn.onclick = function(){selectOpt(btn,i)};
+      opts.appendChild(btn);
+    });
+  }
+
+  var prog = document.getElementById("quiz-progress");
+  prog.innerHTML = "";
+  questions.forEach(function(_,i){
+    var d = document.createElement("div");
+    d.className = "qp-dot"+(i<currentQ?" done":i===currentQ?" active":"");
+    prog.appendChild(d);
+  });
+}
+
+function selectOpt(btn,idx){
+  document.querySelectorAll(".quiz-opt").forEach(function(b){b.classList.remove("selected")});
+  btn.classList.add("selected");
+  quizAnswers[currentQ] = idx;
+  document.getElementById("quiz-next").classList.add("visible");
+}
+
+function nextQuestion(){
+  if(quizAnswers[currentQ]===undefined && questions[currentQ].type!=="text") return;
+  currentQ++;
+  if(currentQ >= questions.length){
+    var lastOptCount = quizAnswers.filter(function(a){return a===3}).length;
+    if(lastOptCount >= 3){showPage("not-a-fit")}
+    else{showPage("form")}
+  }
+  else{renderQuestion()}
+}
+
+function submitForm(){
+  var first = document.getElementById("f-first").value.trim();
+  var last = document.getElementById("f-last").value.trim();
+  var email = document.getElementById("f-email").value.trim();
+  var phone = document.getElementById("f-phone").value.trim();
+  var state = document.getElementById("f-state").value;
+  var instagram = document.getElementById("f-instagram").value.trim().replace(/^@/,"");
+  if(!first||!last||!email||!phone||!state){showToast("Please fill in all fields");return}
+  currentRecruit = {id:Date.now(),first:first,last:last,email:email,phone:phone,state:state,instagram:instagram,rank:"B",recruited:false,step:0,date:new Date().toLocaleDateString(),quizAnswers:quizAnswers.slice(),appt:null};
+  recruits.push(currentRecruit);
+  saveRecruits();
+  showPage("calendar");
+}
+
+function getAnswerText(qIdx, answerVal){
+  if(qOpts[qIdx] === null) return answerVal || "—";
+  return qOpts[qIdx][answerVal] || "—";
+}
+
+function toggleRecruit(i){
+  var el = document.getElementById("recruit-detail-"+i);
+  if(el) el.style.display = el.style.display === "none" ? "block" : "none";
+}
+
+function renderAdmin(){
+  document.getElementById("admin-date").textContent = new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+  document.getElementById("stat-total").textContent = recruits.length;
+  document.getElementById("stat-a").textContent = recruits.filter(function(r){return r.rank==="A"}).length;
+  document.getElementById("stat-recruited").textContent = recruits.filter(function(r){return r.recruited}).length;
+  document.getElementById("stat-pending").textContent = recruits.filter(function(r){return !r.recruited}).length;
+  var table = document.getElementById("recruit-table");
+  if(!recruits.length){
+    table.innerHTML = "<div style='padding:40px;text-align:center;font-size:14px;color:var(--taupe);font-style:italic;font-family:Cormorant Garamond,serif'>No recruits yet. They will appear here once they apply.</div>";
+    return;
+  }
+  table.innerHTML = recruits.map(function(r,i){
+    var answers = qLabels.map(function(label,qi){
+      return "<div style='padding:12px 16px;background:var(--white);border:1px solid var(--border);margin-bottom:8px'><div style='font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:6px'>"+label+"</div><div style='font-family:Cormorant Garamond,serif;font-size:16px;color:var(--dark);font-style:italic'>"+(r.quizAnswers&&r.quizAnswers[qi]!==undefined?getAnswerText(qi,r.quizAnswers[qi]):"Not answered")+"</div></div>";
+    }).join("");
+
+    return "<div style='border-bottom:1px solid var(--border)'><div class='recruit-row' onclick='toggleRecruit("+i+")' style='cursor:pointer'><div><div class='recruit-name'>"+r.first+" "+r.last+"</div><div class='recruit-email'>"+r.email+"</div><div class='recruit-email' style='color:var(--gold2);font-size:10px'>"+( r.date||"")+"</div></div><div><div class='recruit-contact'>"+r.phone+"</div><div class='recruit-contact' style='margin-top:3px'>"+r.state+"</div>"+(r.instagram?"<div class='recruit-contact' style='margin-top:4px'><a href='https://instagram.com/"+r.instagram+"' target='_blank' style='display:inline-flex;align-items:center;gap:5px;color:var(--gold2);text-decoration:none;font-size:10px;letter-spacing:.05em;transition:color .2s' onmouseover='this.style.color=\"var(--dark)\"' onmouseout='this.style.color=\"var(--gold2)\"'><svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8'><rect x='2' y='2' width='20' height='20' rx='5'/><circle cx='12' cy='12' r='4'/><circle cx='17.5' cy='6.5' r='1' fill='currentColor' stroke='none'/></svg>@"+r.instagram+"</a></div>":"")+"<div class='recruit-contact' style='margin-top:3px;color:var(--gold2)'>"+(r.appt ? "<span style='color:var(--gold2)'>✓ Booked: "+r.appt+"</span>" : "<span style='color:var(--border);font-size:10px'>No appointment booked</span>")+"</div></div><div><select class='rank-select' onchange='setRank("+i+",this.value)' onclick='event.stopPropagation()'><option "+(r.rank==="A"?"selected":"")+" value='A'>A</option><option "+(r.rank==="B"?"selected":"")+" value='B'>B</option><option "+(r.rank==="C"?"selected":"")+" value='C'>C</option><option "+(r.rank==="D"?"selected":"")+" value='D'>D</option></select></div><div style='font-size:11px;color:var(--gold2);font-weight:300'>"+(function(){var prog=r.portalProgress||0;var total=11;var steps=["Book Exam","Email Confirmation","Waiting on Admin","Log Into Course","Study Main Material","Study Quizlets","Take Exam","Send Pass Results","Admin Verifying","Receive Password","Get Contracted"];var label=prog>=total?"✓ All Done":("Step "+(prog+1)+"/"+total+": "+(steps[prog]||""));return label;}())+"</div><div style='display:flex;flex-direction:column;gap:6px'>"+"<select class='rank-select' onchange='setRecruitStatus("+i+",this.value)' onclick='event.stopPropagation()' style='min-width:130px;background:"+(r.recruited?"var(--gold)":"var(--white)")+";color:"+(r.recruited?"#fff":"var(--dark)")+";border:1px solid "+(r.recruited?"var(--gold)":"var(--border)")+"'><option value='unrecruited' "+(r.recruited?"":"selected")+">Unrecruited</option><option value='recruited' "+(r.recruited?"selected":"")+">✓ Recruited</option></select>"+(r.step===2||r.step===8?"<button class='recruited-btn' style='background:var(--gold);color:#fff;border:none;margin-top:4px;font-weight:400' onclick='event.stopPropagation();adminUnlockStep("+i+")'>🔓 Unlock Step "+(( r.step||0)+1)+"</button>":"")+"</div><div style='color:var(--taupe);font-size:12px'>View Answers</div></div><div id='recruit-detail-"+i+"' style='display:none;padding:24px 20px;background:var(--cream);border-top:1px solid var(--border)'><p style='font-size:8px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--taupe);margin-bottom:16px'>Quiz Answers</p>"+answers+"</div></div>";
+  }).join("");
+}
+
+function setRank(idx,val){recruits[idx].rank=val;saveRecruits();renderAdmin()}
+function setRecruitStatus(idx,val){
+  if(val==="recruited"){
+    recruits[idx].recruited=true;saveRecruits();renderAdmin();
+    var r=recruits[idx];
+    var pass=r.first.toLowerCase()+r.last.toLowerCase()+"2026";
+    emailjs.send("service_vjilj5a","template_kj4fvdx",{
+      name: r.first,
+      email: r.email,
+      password: pass
+    }).then(function(){
+      showToast("Welcome email sent to "+r.first+" ✓");
+    },function(err){
+      showToast("Email failed — check EmailJS settings");
+      console.error("EmailJS error:",err);
+    });
+  } else {
+    recruits[idx].recruited=false;saveRecruits();renderAdmin();showToast(recruits[idx].first+"'s access has been revoked");
+  }
+}
+function adminUnlockStep(idx){recruits[idx].step=(recruits[idx].step||0)+1;saveRecruits();renderAdmin();showToast("Step unlocked for "+recruits[idx].first)}
+
+function adminLogin(){
+  var pw = document.getElementById("admin-pw").value;
+  if(pw===ADMIN_PASS){showPage("admin");renderAdmin()}
+  else{document.getElementById("admin-err").style.display="block"}
+}
+
+function portalLogin(){
+  var pw = document.getElementById("portal-pw").value.trim();
+  // Admin can log in with their password and see a general view
+  if(pw === ADMIN_PASS){
+    currentRecruit = {first:"Nansi",last:"Hanna",email:"nansihanna.ffl@gmail.com",phone:"",state:"",rank:"A",recruited:true,step:0,id:"admin-preview"};
+    showPage("portal");initPortalSteps();renderPortal();
+    return;
+  }
+  var pwLower = pw.toLowerCase();
+  var matched = recruits.find(function(r){
+    var personal = r.first.toLowerCase()+r.last.toLowerCase()+"2026";
+    return pwLower === personal && r.recruited;
+  });
+  if(matched){currentRecruit=matched;showPage("portal");initPortalSteps();renderPortal()}
+  else{document.getElementById("portal-err").style.display="block"}
+}
+
+function initPortalSteps(){
+  var saved = currentRecruit ? localStorage.getItem("nh_steps_"+currentRecruit.id) : null;
+  portalSteps = saved ? JSON.parse(saved) : stepsData.map(function(s,i){return {completed:false,unlocked:i===0,open:false}});
+  if(!saved) savePortalSteps();
+}
+
+function renderPortal(){
+  var container = document.getElementById("step-container");
+  container.innerHTML = "";
+  // Count progress
+  var done = portalSteps.filter(function(s){return s.completed}).length;
+  var total = stepsData.length;
+  var pct = Math.round((done/total)*100);
+  // Progress bar
+  var prog = document.getElementById("portal-progress");
+  if(prog){
+    prog.innerHTML = "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'><span style='font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)'>Progress</span><span style='font-size:9px;font-weight:300;letter-spacing:.15em;color:var(--gold2)'>"+done+" / "+total+" Steps</span></div><div style='height:2px;background:var(--border);width:100%'><div style='height:2px;background:var(--gold);width:"+pct+"%;transition:width .5s'></div></div>";
+  }
+  // Find the index of the first unlocked-but-not-completed step
+  var currentActive = -1;
+  for(var ci=0;ci<portalSteps.length;ci++){
+    if(portalSteps[ci].unlocked && !portalSteps[ci].completed){currentActive=ci;break;}
+  }
+  var lastPhase = "";
+  stepsData.forEach(function(s,i){
+    var state = portalSteps[i];
+    // Phase label
+    if(s.phase && s.phase !== lastPhase){
+      lastPhase = s.phase;
+      var phaseEl = document.createElement("div");
+      phaseEl.style.cssText = "font-size:8px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);padding:18px 0 8px;border-top:1px solid var(--border);margin-top:4px";
+      phaseEl.textContent = s.phase;
+      container.appendChild(phaseEl);
+    }
+    var cls, statusText;
+    if(state.completed){
+      cls="step-item completed";
+      statusText="✓ Completed";
+    } else if(state.unlocked){
+      cls="step-item unlocked";
+      statusText=s.status;
+    } else if(i === currentActive+1){
+      cls="step-item next-up";
+      statusText="Up Next — Locked";
+    } else {
+      cls="step-item locked";
+      statusText="Locked";
+    }
+    var el = document.createElement("div");
+    var canClick = (state.unlocked && !state.completed) ? "onclick='toggleStep("+i+")' style='cursor:pointer'" : "";
+    var lockBadge = (!state.unlocked) ? "<div style='color:var(--border);font-size:14px'>🔒</div>" : (state.completed ? "<div style='color:var(--gold);font-size:16px'>✓</div>" : "<div class='step-arrow'>›</div>");
+    el.className = cls;
+    el.innerHTML = "<div class='step-header' "+canClick+"><div class='step-num'>"+String(i+1).padStart(2,"0")+"</div><div class='step-title-wrap'><div class='step-title'>"+s.title+"</div><div class='step-status'>"+statusText+"</div></div>"+lockBadge+"</div>"+(state.unlocked?"<div class='step-body "+(state.open?"open":"")+"' id='step-body-"+i+"'><div class='step-content'>"+s.content+"</div>"+(state.unlocked&&!state.completed&&s.completable?"<button class='complete-step-btn' onclick='completeStep("+i+")'>Mark Complete ✓</button>":"")+(state.completed?"<button onclick='uncompleteStep("+i+")' style='margin-top:10px;padding:8px 20px;background:transparent;border:1px solid var(--border);color:var(--taupe);font-family:\"Inter\",sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s' onmouseover='this.style.borderColor=\"var(--dark)\";this.style.color=\"var(--dark)\"' onmouseout='this.style.borderColor=\"var(--border)\";this.style.color=\"var(--taupe)\"'>← Go Back</button>":"")+"</div>":"");
+    container.appendChild(el);
+  });
+}
+
+function toggleStep(i){
+  if(!portalSteps[i].unlocked) return;
+  portalSteps[i].open = !portalSteps[i].open;
+  savePortalSteps();
+  renderPortal();
+}
+
+function completeStep(i){
+  portalSteps[i].completed = true;
+  portalSteps[i].open = false;
+  var next = i+1;
+  if(next < stepsData.length){
+    portalSteps[next].unlocked = true;
+    if(!stepsData[next].adminUnlock) portalSteps[next].open = true;
+  }
+  savePortalSteps();
+  renderPortal();
+  showToast("Step "+(i+1)+" complete!");
+}
+
+function uncompleteStep(i){
+  portalSteps[i].completed = false;
+  portalSteps[i].open = true;
+  var next = i+1;
+  if(next < stepsData.length){
+    portalSteps[next].unlocked = false;
+    portalSteps[next].completed = false;
+    portalSteps[next].open = false;
+  }
+  savePortalSteps();
+  renderPortal();
+  showToast("Step "+(i+1)+" reopened");
+}
+
+function renderCalendar(){
+  var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  document.getElementById("cal-month-label").textContent = months[calMonth]+" "+calYear;
+  var days = document.getElementById("cal-days");
+  days.innerHTML = "";
+  var first = new Date(calYear,calMonth,1).getDay();
+  var total = new Date(calYear,calMonth+1,0).getDate();
+  for(var i=0;i<first;i++){var e=document.createElement("div");e.className="cal-day empty";days.appendChild(e)}
+  for(var d=1;d<=total;d++){
+    var date=new Date(calYear,calMonth,d);
+    var el=document.createElement("div");
+    el.textContent=d;
+    var isPast=date<minBookDate;
+    var isWeekend=date.getDay()===0||date.getDay()===6;
+    if(isPast||isWeekend){el.className="cal-day past"}
+    else{el.className="cal-day available";(function(dt){el.onclick=function(){selectDate(el,dt)}})(date)}
+    days.appendChild(el);
+  }
+  document.getElementById("time-slots-section").style.display="none";
+  document.getElementById("book-btn").classList.remove("ready");
+  selectedDate=null;selectedTime=null;
+}
+
+function selectDate(el,date){
+  document.querySelectorAll(".cal-day").forEach(function(c){c.classList.remove("selected")});
+  el.classList.add("selected");
+  selectedDate=date;
+  var times=["9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM"];
+  var ts=document.getElementById("time-slots");
+  ts.innerHTML="";
+  times.forEach(function(t){
+    var btn=document.createElement("div");
+    btn.className="time-slot available";
+    btn.textContent=t;
+    (function(time){btn.onclick=function(){selectTime(btn,time)}})(t);
+    ts.appendChild(btn);
+  });
+  document.getElementById("time-slots-section").style.display="block";
+  selectedTime=null;
+  document.getElementById("book-btn").classList.remove("ready");
+}
+
+function selectTime(el,t){
+  document.querySelectorAll(".time-slot").forEach(function(s){s.classList.remove("selected")});
+  el.classList.add("selected");
+  selectedTime=t;
+  document.getElementById("book-btn").classList.add("ready");
+}
+
+function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--}renderCalendar()}
+function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++}renderCalendar()}
+
+function bookAppointment(){
+  if(!selectedDate||!selectedTime) return;
+  var dateStr=selectedDate.toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+  if(currentRecruit){currentRecruit.appt=dateStr+" at "+selectedTime;saveRecruits()}
+  document.getElementById("confirm-details").innerHTML="<div class='confirm-row'><div class='key'>Name</div><div class='val'>"+currentRecruit.first+" "+currentRecruit.last+"</div></div><div class='confirm-row'><div class='key'>Email</div><div class='val'>"+currentRecruit.email+"</div></div><div class='confirm-row'><div class='key'>Phone</div><div class='val'>"+currentRecruit.phone+"</div></div><div class='confirm-row'><div class='key'>Date and Time</div><div class='val'>"+dateStr+" at "+selectedTime+"</div></div><div class='confirm-row'><div class='key'>Duration</div><div class='val'>5-minute intro call</div></div>";
+  showPage("confirm");
+  showToast("Confirmation sent to your email and phone");
+}
+
+function saveRecruits(){localStorage.setItem("nh_recruits",JSON.stringify(recruits))}
+function savePortalSteps(){if(currentRecruit){localStorage.setItem("nh_steps_"+currentRecruit.id,JSON.stringify(portalSteps));currentRecruit.portalProgress=portalSteps.filter(function(s){return s.completed}).length;saveRecruits();}}
+
+function showToast(msg){
+  var t=document.getElementById("toast");
+  t.textContent=msg;
+  t.classList.add("show");
+  setTimeout(function(){t.classList.remove("show")},3000);
+}
+
+function toggleMenu(){
+  document.getElementById("side-menu").classList.toggle("open");
+  document.getElementById("menu-overlay").classList.toggle("open");
+}
+
+// Mobile touch fix: tap to reveal hover state on info-card and svc-card
+document.addEventListener('touchstart', function(e){
+  var card = e.target.closest('.info-card, .svc-card');
+  if(card){
+    var selector = card.classList.contains('info-card') ? '.info-card' : '.svc-card';
+    document.querySelectorAll(selector).forEach(function(c){ if(c !== card) c.classList.remove('touch-active'); });
+    card.classList.toggle('touch-active');
+  }
+}, {passive:true});
+
+// Income calculator
+document.addEventListener('DOMContentLoaded', function(){
+  var slider = document.getElementById('calc-slider');
+  if(!slider) return;
+  var FFL_AVG = 15300;
+  function fmt(n){return '$'+n.toLocaleString()}
+  function animate(el, newVal){
+    el.style.transform='scale(1.04)';
+    el.style.opacity='0.6';
+    setTimeout(function(){
+      el.textContent=newVal;
+      el.style.transform='scale(1)';
+      el.style.opacity='1';
+    },150);
+  }
+  slider.addEventListener('input', function(){
+    var current = parseInt(this.value);
+    var after = Math.max(FFL_AVG, Math.round(current * 5.1 / 100) * 100);
+    var gap = after - current;
+    var mult = (after/current).toFixed(1);
+    document.getElementById('calc-current-label').textContent = fmt(current);
+    animate(document.getElementById('calc-before-num'), fmt(current));
+    animate(document.getElementById('calc-after-num'), fmt(after));
+    document.getElementById('calc-before-year').textContent = fmt(current*12)+' / year';
+    document.getElementById('calc-after-year').textContent = fmt(after*12)+' / year';
+    document.getElementById('calc-gap').textContent = fmt(gap)+' / mo';
+    document.getElementById('calc-multiplier').textContent = mult+'× your current income';
+  });
+});
+</script>
+
+<!-- FIXED BOTTOM MARQUEE BANNER - landing only -->
+<div id="bottom-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:9996;background:#000;border-top:1px solid rgba(255,255,255,0.08);padding:11px 0;overflow:hidden;display:block">
+  <div style="display:flex;white-space:nowrap;animation:marquee 30s linear infinite">
+    <div style="display:inline-flex;align-items:center;gap:48px;padding:0 48px;flex-shrink:0">
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">Wake Up to Morning Deposits</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">Make Uncapped Commission</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">No Limit to How Much You Can Make</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">It's Your Own Business</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+    </div>
+    <div style="display:inline-flex;align-items:center;gap:48px;padding:0 48px;flex-shrink:0" aria-hidden="true">
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">Wake Up to Morning Deposits</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">Make Uncapped Commission</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">No Limit to How Much You Can Make</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+      <span style="font-size:9px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif">It's Your Own Business</span>
+      <span style="color:rgba(255,255,255,0.25);font-size:9px">|</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
