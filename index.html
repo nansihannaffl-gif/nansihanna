@@ -7,6 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Bebas+Neue&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>emailjs.init("WbOWdf4BrqPs0xVqY");</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAq-wMLXLS-tNhEQsc4fVr8IwOrQuYl6wY",
+    authDomain: "elite-motion-5ae0f.firebaseapp.com",
+    projectId: "elite-motion-5ae0f",
+    storageBucket: "elite-motion-5ae0f.firebasestorage.app",
+    messagingSenderId: "154669536353",
+    appId: "1:154669536353:web:8a6f3c8fd9621225a80620",
+    measurementId: "G-EQ77M5PBRQ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  window._db = db;
+  window._fbCollection = collection;
+  window._fbGetDocs = getDocs;
+  window._fbAddDoc = addDoc;
+  window._fbUpdateDoc = updateDoc;
+  window._fbDoc = doc;
+  window._fbQuery = query;
+  window._fbWhere = where;
+  window._fbDeleteDoc = deleteDoc;
+
+  // Load recruits from Firebase on start
+  async function loadRecruits() {
+    try {
+      const snap = await getDocs(collection(db, "recruits"));
+      recruits = [];
+      snap.forEach(d => recruits.push({...d.data(), _firebaseId: d.id}));
+      window._recruitsLoaded = true;
+    } catch(e) { console.error("Firebase load error:", e); }
+  }
+  window._loadRecruits = loadRecruits;
+  loadRecruits();
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -40,6 +78,12 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
 .page.active{display:block}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes auroraDrift1{0%,100%{transform:translate(-20%,-20%) scale(1);opacity:0.8}50%{transform:translate(10%,10%) scale(1.3);opacity:1}}
+@keyframes auroraDrift2{0%,100%{transform:translate(20%,10%) scale(1.1);opacity:0.7}50%{transform:translate(-10%,-15%) scale(0.9);opacity:1}}
+.aurora-layer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.aurora-layer .a1{position:absolute;width:180%;height:180%;top:-40%;left:-40%;background:radial-gradient(ellipse 55% 45% at 40% 50%,rgba(255,255,255,0.12) 0%,transparent 60%);animation:auroraDrift1 9s ease-in-out infinite}
+.aurora-layer .a2{position:absolute;width:180%;height:180%;top:-40%;left:-40%;background:radial-gradient(ellipse 45% 55% at 65% 40%,rgba(255,255,255,0.09) 0%,transparent 55%);animation:auroraDrift2 11s ease-in-out infinite}
+.aurora-layer .a3{position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 50% 50%,transparent 30%,#0d0d0e 82%)}
 @keyframes expandW{from{width:0}to{width:60px}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -54,7 +98,7 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
   align-items:center;
   padding:16px 40px;
   border-bottom:1px solid var(--border);
-  background:var(--white);
+  background:transparent;
   position:sticky;top:0;z-index:100;
 }
 .nav-left{display:flex;gap:28px;align-items:center}
@@ -73,7 +117,7 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
 .hero{
   padding:72px 60px 56px;
   text-align:center;
-  background:var(--white);
+  background:transparent;
   max-width:1100px;
   margin:0 auto;
 }
@@ -113,14 +157,14 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
 
 .video-frame{
   position:relative;
-  background:var(--cream2);
-  border:1px solid rgba(255,255,255,0.22);
+  background:transparent;
+  border:0.25px solid rgba(160,144,128,0.35);
   padding:16px;
   box-shadow:0 0 50px 18px rgba(255,255,255,0.18),0 0 80px 35px rgba(255,255,255,0.10),0 0 120px 50px rgba(20,100,50,0.07);
 }
 .video-inner{
   position:relative;
-  background:#000;
+  background:transparent;
   overflow:hidden;
   cursor:pointer;
 }
@@ -425,8 +469,10 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
 #page-form.active,#page-calendar.active,#page-confirm.active,#page-not-a-fit.active{display:flex}
 #page-admin-login,#page-portal-login{background:var(--white);display:none;align-items:center;justify-content:center}
 #page-admin-login.active,#page-portal-login.active{display:flex}
-#page-admin,#page-portal{display:none;min-height:100vh;background:var(--cream)}
-#page-admin.active,#page-portal.active{display:block}
+#page-admin,#page-portal,#page-eli-admin{display:none;min-height:100vh;background:var(--cream)}
+#page-admin.active,#page-portal.active,#page-eli-admin.active{display:block}
+#page-eli-login{background:var(--white);display:none;align-items:center;justify-content:center}
+#page-eli-login.active{display:flex}
 
 .quiz-inner{max-width:640px;width:100%;margin:0 auto;padding:80px 32px;text-align:center}
 .quiz-progress{display:flex;gap:6px;justify-content:center;margin-bottom:52px}
@@ -452,9 +498,18 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
 .form-field{display:flex;flex-direction:column;gap:5px;text-align:left}
 .form-field.full{grid-column:1/-1}
 .form-field label{font-size:8px;font-weight:300;letter-spacing:.2em;color:var(--taupe);text-transform:uppercase}
-.form-field input,.form-field select{background:var(--cream);border:1px solid var(--border);color:var(--dark);padding:13px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none}
+.form-field input,.form-field select{background:#fff;border:1px solid var(--border);color:#1a1a1a;padding:13px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none}
 .form-field input:focus,.form-field select:focus{border-color:var(--dark)}
-.form-field select option{background:#141416}
+.form-field select option{background:#fff;color:#1a1a1a}
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus{
+  -webkit-box-shadow:0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color:#1a1a1a !important;
+  box-shadow:0 0 0 1000px #fff inset !important;
+  border-color:var(--gold) !important;
+  transition:background-color 5000s ease-in-out 0s;
+}
 .submit-btn{width:100%;padding:16px;background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;border:none;cursor:pointer;margin-top:8px;transition:all .3s}
 .submit-btn:hover{background:var(--gold)}
 
@@ -733,7 +788,7 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
   </div>
   <div style="margin-top:auto;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:24px;justify-content:center">
     <span onclick="showPage('admin-login');toggleMenu()" style="font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);cursor:pointer;transition:color .25s" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--taupe)'">Owner Login</span>
-    <span style="font-size:9px;color:var(--taupe);opacity:0.35">·</span>
+    <span style="font-size:9px;color:var(--taupe);opacity:0.65">·</span>
     <span onclick="showPage('portal-login');toggleMenu()" style="font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);cursor:pointer;transition:color .25s" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--taupe)'">Team Login</span>
   </div>
   <div class="side-menu-footer">Nansi Hanna · Elite Motional Financial</div>
@@ -748,8 +803,11 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
   <div class="hamburger-label">Menu</div>
 </button>
 
+<!-- ===== AURORA BACKGROUND ===== -->
+<div class="aurora-layer"><div class="a1"></div><div class="a2"></div><div class="a3"></div></div>
+
 <!-- ===== LANDING ===== -->
-<div id="page-landing" class="page active">
+<div id="page-landing" class="page active" style="position:relative">
 
   <nav class="top-nav">
     <div class="nav-left">
@@ -1120,36 +1178,59 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
     <div class="form-eyebrow">You Made It This Far</div>
     <h2 class="form-title">This Might Be a Good Fit.</h2>
     <p class="form-sub">Let's schedule a 5-minute call.</p>
+    <form id="recruit-form" autocomplete="on" onsubmit="return false">
     <div class="form-grid">
-      <div class="form-field"><label>First Name</label><input type="text" id="f-first" placeholder="First name"></div>
-      <div class="form-field"><label>Last Name</label><input type="text" id="f-last" placeholder="Last name"></div>
-      <div class="form-field"><label>Email Address</label><input type="email" id="f-email" placeholder="your@email.com"></div>
-      <div class="form-field"><label>Phone Number</label><input type="tel" id="f-phone" placeholder="(000) 000-0000"></div>
-      <div class="form-field full"><label>Instagram Handle <span style="font-weight:300;color:var(--taupe);font-size:10px;letter-spacing:.05em">(optional)</span></label><input type="text" id="f-instagram" placeholder="@yourhandle"></div>
+      <div class="form-field"><label>First Name</label><input type="text" id="f-first" name="given-name" placeholder="First name" autocomplete="given-name"></div>
+      <div class="form-field"><label>Last Name</label><input type="text" id="f-last" name="family-name" placeholder="Last name" autocomplete="family-name"></div>
+      <div class="form-field"><label>Email Address</label><input type="email" id="f-email" name="email" placeholder="your@email.com" autocomplete="email"></div>
+      <div class="form-field"><label>Phone Number</label><input type="tel" id="f-phone" name="tel" placeholder="(000) 000-0000" autocomplete="tel"></div>
+      <div class="form-field full"><label>Instagram Handle <span style="font-weight:300;color:var(--taupe);font-size:10px;letter-spacing:.05em">(optional)</span></label><input type="text" id="f-instagram" name="instagram" placeholder="@yourhandle" autocomplete="off"></div>
       <div class="form-field full"><label>State You Live In</label>
-        <select id="f-state">
+        <select id="f-state" name="state" autocomplete="address-level1">
           <option value="">Select your state...</option>
           <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
         </select>
       </div>
     </div>
-    <button class="submit-btn" onclick="submitForm()">Submit & Book My Call →</button>
+    <button type="button" class="submit-btn" onclick="submitForm()">Submit & Book My Call →</button>
+    </form>
   </div>
 </div>
 
 <!-- ===== CALENDAR ===== -->
 <div id="page-calendar" class="page">
-  <div style="text-align:center;padding:48px 32px 20px">
-    <p style="font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px">Almost There</p>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,46px);font-weight:400;color:var(--dark);margin-bottom:6px">Book Your Interview</h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe)">Pick a time that works for you — Nansi will confirm within 24 hours.</p>
+  <div class="cal-inner">
+    <p class="cal-eyebrow">Almost There</p>
+    <h2 class="cal-title">Book Your Interview</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--taupe);margin-bottom:36px">Pick a date and time — Nansi will be there.</p>
+
+    <div class="cal-host">
+      <div class="cal-avatar">N</div>
+      <div>
+        <div class="cal-host-name">Nansi Hanna</div>
+        <div class="cal-host-title">Elite Motional Financial · 15 min intro call</div>
+      </div>
+    </div>
+
+    <div class="calendar-widget">
+      <div class="cal-month">
+        <button class="cal-nav" onclick="prevMonth()">‹</button>
+        <span id="cal-month-label"></span>
+        <button class="cal-nav" onclick="nextMonth()">›</button>
+      </div>
+      <div class="cal-days-header">
+        <div class="cal-day-label">Sun</div><div class="cal-day-label">Mon</div><div class="cal-day-label">Tue</div><div class="cal-day-label">Wed</div><div class="cal-day-label">Thu</div><div class="cal-day-label">Fri</div><div class="cal-day-label">Sat</div>
+      </div>
+      <div class="cal-days" id="cal-days"></div>
+    </div>
+
+    <div id="time-slots-section" style="display:none;margin-top:20px;text-align:left">
+      <p style="font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-bottom:12px">Available Times</p>
+      <div class="time-slots" id="time-slots"></div>
+    </div>
+
+    <button class="book-btn" id="book-btn" onclick="bookAppointment()">Confirm Booking →</button>
   </div>
-  <!-- Calendly inline widget -->
-  <div class="calendly-inline-widget"
-    data-url="https://calendly.com/nansihanna-ffl/new-meeting?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=c8a96e"
-    style="min-width:320px;height:700px;margin:0 auto;max-width:900px">
-  </div>
-  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </div>
 
 <!-- ===== CONFIRM ===== -->
@@ -1174,39 +1255,116 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
     <div class="login-box">
       <span class="login-icon">🔐</span>
       <h2>Owner Login</h2>
-      <span class="login-role">Recruit Dashboard Access</span>
+      <span class="login-role">Full Dashboard Access</span>
       <p class="login-desc">Enter your password to view all recruits, manage ranks, and track progress.</p>
       <div class="login-input-wrap">
         <input type="password" id="admin-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')adminLogin()">
       </div>
       <div class="login-err" id="admin-err">Incorrect password. Please try again.</div>
-      <button class="login-submit" onclick="adminLogin()">View My Recruits →</button>
-      <div class="login-switch">Team member? <a href="#" onclick="showPage('portal-login')">Team Login →</a></div>
+      <button class="login-submit" onclick="adminLogin()">View My Dashboard →</button>
+      <div class="login-switch" style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <span>Admin? <a href="#" onclick="showPage('eli-login')">Admin Login →</a></span>
+        <span>Team member? <a href="#" onclick="showPage('portal-login')">Team Login →</a></span>
+      </div>
     </div>
     <button class="login-back" onclick="showPage('landing')">← Back to Site</button>
   </div>
 </div>
 
+<!-- ===== ELI ADMIN LOGIN ===== -->
+<div id="page-eli-login" class="page">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <h1>Nansi Hanna</h1>
+      <div class="login-brand-divider"></div>
+      <p>Elite Motional Financial</p>
+    </div>
+    <div class="login-box">
+      <span class="login-icon">👤</span>
+      <h2>Admin Login</h2>
+      <span class="login-role">Hiring Manager Access</span>
+      <p class="login-desc">Enter your admin password to view recruit information.</p>
+      <div class="login-input-wrap">
+        <input type="password" id="eli-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')eliLogin()">
+      </div>
+      <div class="login-err" id="eli-err">Incorrect password. Please try again.</div>
+      <button class="login-submit" onclick="eliLogin()">Access Dashboard →</button>
+      <div class="login-switch">Owner? <a href="#" onclick="showPage('admin-login')">Owner Login →</a></div>
+    </div>
+    <button class="login-back" onclick="showPage('landing')">← Back to Site</button>
+  </div>
+</div>
+
+<!-- ===== ELI DASHBOARD ===== -->
+<div id="page-eli-admin" class="page">
+  <div class="admin-header">
+    <h1>Admin Dashboard</h1>
+    <div style="display:flex;align-items:center;gap:20px"><span id="eli-date"></span><button onclick="showPage('landing')" style="padding:8px 16px;background:var(--dark);color:var(--cream);border:none;font-family:Jost,sans-serif;font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;cursor:pointer">Back to Site</button></div>
+  </div>
+  <!-- TABS -->
+  <div style="display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--cream);padding:0 32px">
+    <button id="eli-tab-recruits" onclick="switchEliTab('recruits')" style="padding:14px 24px;background:var(--dark);color:var(--cream);border:none;font-family:Inter,sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid var(--gold)">👥 Recruits</button>
+
+  </div>
+  <!-- RECRUITS TAB -->
+  <div id="eli-tab-recruits-panel" class="admin-body">
+    <div class="admin-table-wrap">
+      <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;padding:12px 20px;background:var(--dark);border-bottom:1px solid var(--border)">
+        <span style="font-size:8px;font-weight:300;letter-spacing:.15em;color:var(--beige);text-transform:uppercase">Name</span>
+        <span style="font-size:8px;font-weight:300;letter-spacing:.15em;color:var(--beige);text-transform:uppercase">Email</span>
+        <span style="font-size:8px;font-weight:300;letter-spacing:.15em;color:var(--beige);text-transform:uppercase">Phone</span>
+        <span style="font-size:8px;font-weight:300;letter-spacing:.15em;color:var(--beige);text-transform:uppercase">State</span>
+        <span style="font-size:8px;font-weight:300;letter-spacing:.15em;color:var(--beige);text-transform:uppercase">Current Step</span>
+      </div>
+      <div id="eli-table"></div>
+    </div>
+  </div>
+
+</div>
+
 <!-- ===== ADMIN DASHBOARD ===== -->
 <div id="page-admin" class="page">
   <div class="admin-header">
-    <h1>Recruit Dashboard</h1>
+    <h1>Owner Dashboard</h1>
     <div style="display:flex;align-items:center;gap:20px"><span id="admin-date"></span><button onclick="showPage('landing')" style="padding:8px 16px;background:var(--dark);color:var(--cream);border:none;font-family:Jost,sans-serif;font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;cursor:pointer">Back to Site</button></div>
   </div>
-  <div class="admin-body">
+  <!-- TABS -->
+  <div style="display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--cream);padding:0 32px">
+    <button id="tab-recruits" onclick="switchAdminTab('recruits')" style="padding:14px 24px;background:var(--dark);color:var(--cream);border:none;font-family:Inter,sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid var(--gold)">👥 Recruits</button>
+    <button id="tab-pipeline" onclick="switchAdminTab('pipeline')" style="padding:14px 24px;background:transparent;color:var(--taupe);border:none;font-family:Inter,sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent">📊 Pipeline</button>
+    <button id="tab-calendar" onclick="switchAdminTab('calendar')" style="padding:14px 24px;background:transparent;color:var(--taupe);border:none;font-family:Inter,sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent">📅 Calendar</button>
+
+  </div>
+
+  <!-- RECRUITS TAB -->
+  <div id="admin-tab-recruits" class="admin-body">
     <div class="admin-stats">
-      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Recruits</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-a">0</div><div class="stat-label">A-List</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-recruited">0</div><div class="stat-label">Recruited</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-pending">0</div><div class="stat-label">Pending</div></div>
+      <div class="stat-card" onclick="filterTable('all')" style="cursor:pointer"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Applied</div></div>
+      <div class="stat-card" onclick="filterTable('booked')" style="cursor:pointer"><div class="stat-num" id="stat-booked">0</div><div class="stat-label">Booked Calls</div></div>
+      <div class="stat-card" onclick="filterTable('recruited')" style="cursor:pointer"><div class="stat-num" id="stat-recruited">0</div><div class="stat-label">Total Recruited</div></div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+      <button onclick="deleteAllRecruits()" style="padding:10px 22px;background:transparent;color:#c04040;border:1px solid #c04040;font-family:'Inter',sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s" onmouseover="this.style.background='#c04040';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#c04040'">🗑 Delete All Applicants</button>
     </div>
     <div class="admin-table-wrap">
       <div class="admin-table-head" style="grid-template-columns:2fr 2fr 1fr 1fr 1.5fr 1fr;background:var(--dark)">
-        <span style="color:var(--taupe)">Name</span><span style="color:var(--taupe)">Contact & Appointment</span><span style="color:var(--taupe)">Rank</span><span style="color:var(--taupe)">Progress</span><span style="color:var(--taupe)">Action</span><span style="color:var(--taupe)">Answers</span>
+        <span style="color:var(--beige)">Name</span><span style="color:var(--beige)">Contact & Appointment</span><span style="color:var(--beige)">Rank</span><span style="color:var(--beige)">Progress</span><span style="color:var(--beige)">Action</span><span style="color:var(--beige)">Answers</span>
       </div>
       <div id="recruit-table"></div>
     </div>
   </div>
+
+  <!-- PIPELINE TAB -->
+  <div id="admin-tab-pipeline" class="admin-body" style="display:none">
+    <div id="pipeline-view"></div>
+  </div>
+
+  <!-- CALENDAR TAB -->
+  <div id="admin-tab-calendar" class="admin-body" style="display:none">
+    <div id="admin-calendar-view"></div>
+  </div>
+
+
 </div>
 
 <!-- ===== PORTAL LOGIN ===== -->
@@ -1222,12 +1380,14 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
       <h2>Team Login</h2>
       <span class="login-role">Onboarding Portal Access</span>
       <p class="login-desc">Enter your access code to view your onboarding steps and track your progress to getting licensed.</p>
-      <div class="login-input-wrap">
-        <input type="password" id="portal-pw" placeholder="Enter access code" onkeydown="if(event.key==='Enter')portalLogin()">
+      <div class="login-input-wrap" style="position:relative">
+        <input type="text" id="portal-pw" placeholder="Enter access code" onkeydown="if(event.key==='Enter')portalLogin()" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" style="-webkit-text-security:disc;text-security:disc;padding-right:48px">
+        <button type="button" id="portal-pw-toggle" onclick="(function(){var i=document.getElementById('portal-pw');var on=i.style.webkitTextSecurity==='none';i.style.webkitTextSecurity=on?'disc':'none';i.style.textSecurity=on?'disc':'none';document.getElementById('portal-pw-toggle').textContent=on?'👁':'🙈'})()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:var(--taupe);padding:0;line-height:1">👁</button>
       </div>
       <div class="login-err" id="portal-err">Incorrect access code. Please try again.</div>
       <button class="login-submit" onclick="portalLogin()">Access My Portal →</button>
       <div class="login-switch">Owner? <a href="#" onclick="showPage('admin-login')">Owner Login →</a></div>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--taupe);font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.7">Have any questions? Contact Nansi —<br><a href="tel:6195587851" style="color:var(--gold2);text-decoration:none;font-weight:400">619-558-7851</a></div>
     </div>
     <button class="login-back" onclick="showPage('landing')">← Back to Site</button>
   </div>
@@ -1260,7 +1420,7 @@ body{background:var(--white);color:var(--dark);font-family:'Inter',sans-serif;fo
 <script>
 const ADMIN_PASS = "Nh06122006$";
 const PORTAL_PASS = "123";
-const ADMIN_EMAIL = "eli@elitemotionfinancial.org";
+const ADMIN_EMAIL = "alsefoon@gmail.com";
 
 let recruits = JSON.parse(localStorage.getItem("nh_recruits") || "[]");
 let currentRecruit = null;
@@ -1274,17 +1434,18 @@ let portalSteps = null;
 const now = new Date();
 calYear = now.getFullYear();
 calMonth = now.getMonth();
-const minBookDate = new Date();
-minBookDate.setDate(minBookDate.getDate() + 16);
+const minBookDate = new Date(2026, 4, 23); // May 23 2026 — available from today
 
 const questions = [
   {
-    q: "You are three weeks in, results have not come yet. What is your mindset?",
+    q: "Let's say you had to get 30 no's before you could get to a yes. How would you handle that rejection?",
     opts: ["I trust the process and stay consistent", "I reassess my approach and keep going", "I start to doubt if it is worth it", "I am already looking for something else"]
   },
   {
     q: "What does success mean to you and how badly do you actually want it?",
-    opts: ["Everything — I would sacrifice comfort to get there", "I want it but I need balance too", "I want a better life but I am not sure how far I would go", "I have not really defined what success looks like for me"]
+    opts: null,
+    type: "text",
+    placeholder: "Share your answer in at least one sentence..."
   },
   {
     q: "What is your why? Why do you want to do this?",
@@ -1293,8 +1454,10 @@ const questions = [
     placeholder: "Share in 2 to 3 sentences. Be real — this is what matters most."
   },
   {
-    q: "How do you handle rejection?",
-    opts: ["I use it as fuel — it makes me work harder", "I take a moment then get back up", "It affects me but I push through", "It is hard for me and slows me down"]
+    q: "Are you eventually able to put in 10–12 hours a day, Monday through Saturday, to building your own business?",
+    opts: ["Yes, absolutely — I'm ready to commit", "Maybe — I need to think about it", "No, I can't commit to that right now"],
+    type: "commitment",
+    note: "If you have school or other commitments, that's okay — as long as you're working towards this full time."
   }
 ];
 
@@ -1302,25 +1465,25 @@ const qLabels = [
   "3 weeks in, no results — mindset?",
   "What does success mean to you?",
   "What is your why?",
-  "How do you handle rejection?"
+  "Availability commitment"
 ];
 
 const qOpts = [
   ["I trust the process and stay consistent", "I reassess my approach and keep going", "I start to doubt if it is worth it", "I am already looking for something else"],
-  ["Everything — I would sacrifice comfort to get there", "I want it but I need balance too", "I want a better life but I am not sure how far I would go", "I have not really defined what success looks like for me"],
   null,
-  ["I use it as fuel — it makes me work harder", "I take a moment then get back up", "It affects me but I push through", "It is hard for me and slows me down"]
+  null,
+  ["Yes, absolutely — I'm ready to commit", "Maybe — I need to think about it", "No, I can't commit to that right now"]
 ];
 
 const stepsData = [
   {phase:"PRE-EXAM",title:"Book Your Exam",status:"Start Here",content:"Follow these steps exactly to book your state life insurance licensing exam:<br><br><div class='substep'><span class='substep-num'>1</span><span><strong>Find your state's info sheet</strong> — Click the link below, find your state, and click on its <strong>Info Sheet</strong>.<br><br><a href='https://email.no-reply.a4aleadshub.com/c/eJx0k0-TqjoQxT8N7JhKQkBYZKF3xD-jo8xz_vg2VkgaRSDJDRF0Pv0rfbde3cV92-4-fap-3UccKskM1zjO3y72kyKx3s0AwasvGY_4KE2wL3XLK8WUDiyY5vbEKW-Ay-50KZ6Ebn_1D3pQYLtTZQ7uZoDxIyhxe1SlDwyPohFCMY1SH1peNYcWuo4f4e7f6-2toWU2NZrPF5NVFtfDr6nHqkHbumz077W7jCARFzhNg4iSIqAp8IAjEQdYQCxRlOKEit8lnQPz0FGIRiklAcFJFNAU0YDjMg4IwglFAhckwT6ovrJataAcM1bLi3CVVv6JUVKEJZSUxxElZcjDgmKMAUIZIZkksV8xgkiEUkTxiKAofYKowCOKIQXMBSljj6L_Zdmwk3Om88KxRzKPZFKL7umo9bGBe98jWWfsQwDguvuARzIss2653qJ3kNnJnPmg5G4cfTRz2dadmm_m6XRvEid-rDa5RzKQlfNIeKykFz4jvxGHfyFVyoFVvGHvJOvk7KP-wunEzs-8lhNK9srsxy8nUu2L73S99kh2azf7_rrQu3x_-fp-r1-P5D3ha-GRLN_0nUnWy-VQaOWR7JvTzCOTv6YLO12MqTHH60_Qq2xJ-tnR8kv94yVXYZ7_XKRD8qXzxeTWbofc5G_4i0yHUE0L9emRiWuGIt3WdTJXqvfIBA238999uSJwnUb4OkNJtkYr6ISekeeFy7fPH-00yd_k1iPZS0PVbge1Uvskn9Ly1ZjTJlxePrefu-H8cl4IL3z2G_3IRGgTXubLcFw4dFNoVyXo6rfgTloybirfWN1XEiy7n09opUA4bX3LeNNBqbXyKDresT7O2umLFcAenIOq64P7S4P1HQN3-O-9Hbub_9HZMaHbwx-D2jPyTwAAAP__0K9B-Q' target='_blank' style='font-weight:400;font-size:14px'>→ Click HERE to find your state</a></span></div><br><div class='substep'><span class='substep-num'>2</span><span><strong>Open the Info Sheet</strong> — On that page, click the <strong>Info Sheet link</strong> for your state. It will take you to <strong>Xcel Solutions</strong>.</span></div><br><div class='substep'><span class='substep-num'>3</span><span><strong>Schedule your exam</strong> — On the Xcel Solutions page, scroll down to the <strong>2nd step</strong> that says <em>\"Schedule State Examination\"</em> and click the link.</span></div><br><div class='substep'><span class='substep-num'>4</span><span><strong>Select your exam</strong> — On the scheduling site, make sure you select the <strong>Life Exam</strong>. Pick a date at least <strong>2 weeks + 2 days from today</strong>.</span></div><br><div class='substep'><span class='substep-num'>5</span><span><strong>Take a screenshot</strong> of your exam confirmation and save it — you'll need it for the next step.</span></div><br><div class='wait-notice'>✅ Once booked, mark this step complete to unlock Step 2 where you'll email your confirmation.</div>",completable:true,adminUnlock:false},
-  {phase:"",title:"Email Your Exam Confirmation",status:"Action Required",content:"Email your exam confirmation screenshot to Nansi:<br><br><strong><a href='mailto:eli@elitemotionfinancial.org'>eli@elitemotionfinancial.org</a></strong><br><br>Use the subject line: <strong>Exam Confirmation – [Your Full Name]</strong><br><br>Attach the <strong>screenshot</strong> you took when booking.<br><br>Once sent, mark complete and wait — Nansi will send you a code for the free course.",completable:true,adminUnlock:false},
+  {phase:"",title:"Email Your Exam Confirmation",status:"Action Required",content:"Email your exam confirmation screenshot directly to Nansi:<br><br><strong><a href='mailto:alsefoon@gmail.com'>alsefoon@gmail.com</a></strong><br><br>Subject: <strong>EXAM CONFIRMATION – [Your Full Name]</strong><br><br>Attach your confirmation screenshot. Once sent, mark this step complete and wait for Nansi to unlock Step 3.",completable:true,adminUnlock:false},
   {phase:"",title:"Wait for Admin Response",status:"Pending Review",content:"Your confirmation has been sent. Nansi will review it and unlock your next step.<br><br><div class='wait-notice'>⏳ This step is unlocked by your admin — sit tight!</div>",completable:false,adminUnlock:true},
   {phase:"STUDYING",title:"Log Into the Free Course",status:"Access Your Training",content:"Your free course access has been approved. Log in using the details Nansi sent you and confirm you can access the material.<br><br>Once you're in, mark this step complete.",completable:true,adminUnlock:false},
   {phase:"",title:"Study — Main Material",status:"Hit the Books",content:"Go through every module in your course. Take notes. Watch every video. Don't skip anything.<br><br>When you feel confident you've covered the material, mark this step complete.",completable:true,adminUnlock:false},
   {phase:"",title:"Study Extra Quizlets",status:"Extra Prep",content:"Drill these flashcard sets until you know them cold:<br><br>📚 <a href='https://quizlet.com/244799365/life-insurance-practice-exam-flash-cards/' target='_blank'><strong>Life Insurance Practice Exam Flash Cards</strong></a><br><br>📚 <a href='https://quizlet.com/416762772/life-insurance-exam-questions-flash-cards/' target='_blank'><strong>Life Insurance Exam Questions</strong></a><br><br>📚 <a href='https://quizlet.com/162655458/life-insurance-practice-test-questions-flash-cards/' target='_blank'><strong>Life Insurance Practice Test Questions</strong></a><br><br>Once you feel ready, mark this step complete.",completable:true,adminUnlock:false},
   {phase:"POST-EXAM",title:"Take Your Exam",status:"Exam Day",content:"You're ready. Show up early. Bring a valid government-issued photo ID. Stay calm — you've put in the work.<br><br>After you <strong>pass</strong>, come back here and mark this step complete.",completable:true,adminUnlock:false},
-  {phase:"",title:"Send Your Pass Results to Admin",status:"Action Required",content:"Congratulations on passing! Now email Nansi your proof:<br><br><strong><a href='mailto:eli@elitemotionfinancial.org'>eli@elitemotionfinancial.org</a></strong><br><br>Subject: <strong>PASSED – [Your Full Name]</strong><br><br>Attach a <strong>screenshot of your license or passing score</strong>. Once sent, mark complete.",completable:true,adminUnlock:false},
+  {phase:"",title:"Send Your Pass Results to Admin",status:"Action Required",content:"Congratulations on passing! Now email Nansi your proof:<br><br><strong><a href='mailto:alsefoon@gmail.com'>alsefoon@gmail.com</a></strong><br><br>Subject: <strong>PASSED – [Your Full Name]</strong><br><br>Attach a <strong>screenshot of your license or passing score</strong>. Once sent, mark complete.",completable:true,adminUnlock:false},
   {phase:"",title:"Admin Verifies Your Results",status:"Under Review",content:"Nansi is reviewing your pass results. Once verified, you'll receive your next-level course password.<br><br><div class='wait-notice'>⏳ This step is unlocked by your admin — hang tight, you're almost there!</div>",completable:false,adminUnlock:true},
   {phase:"",title:"Receive Your Course Password",status:"Access Granted",content:"Your course password has been sent by Nansi. Use it to access your next-level training and the full agent portal.<br><br><strong>Welcome to the team — officially. 🖤</strong>",completable:true,adminUnlock:false},
   {phase:"",title:"Get Contracted with Carrier",status:"Final Step",content:"You're licensed and trained — now it's time to get contracted with your carrier so you can start writing business.<br><br>Nansi will provide your Discord and WhatsApp community links once you're contracted.<br><br><strong>The journey starts now.</strong>",completable:true,adminUnlock:false}
@@ -1334,15 +1497,109 @@ function showPage(name){
   if(el) el.classList.add("active");
   var banner = document.getElementById("bottom-banner");
   if(banner) banner.style.display = (name==="landing") ? "block" : "none";
+  var overlay = document.getElementById("landing-bg-overlay");
+  if(overlay){
+    overlay.style.display = (name==="landing") ? "block" : "none";
+    if(name==="landing") positionOverlay();
+  }
+  if(name === "calendar"){
+    setTimeout(function(){ renderCalendar(); }, 100);
+  }
 }
 
+function positionOverlay(){
+  var overlay = document.getElementById("landing-bg-overlay");
+  var nav = document.querySelector("#page-landing .top-nav");
+  var banner = document.getElementById("bottom-banner");
+  if(!overlay||!nav||!banner) return;
+  var navBottom = nav.getBoundingClientRect().bottom + window.scrollY;
+  var bannerTop = window.innerHeight - banner.offsetHeight;
+  overlay.style.top = navBottom + "px";
+  overlay.style.left = "0";
+  overlay.style.right = "0";
+  overlay.style.bottom = banner.offsetHeight + "px";
+  overlay.style.height = "auto";
+}
+
+window.addEventListener("resize", positionOverlay);
+window.addEventListener("load", function(){ if(document.getElementById("page-landing").classList.contains("active")) positionOverlay(); });
+
 // Auto-redirect to Team Login if URL has ?login=team
+// Auto-unlock step 3 if URL has ?unlock=RECRUITID
 (function(){
   var params = new URLSearchParams(window.location.search);
   if(params.get("login") === "team") showPage("portal-login");
+  var unlockId = params.get("unlock");
+  if(unlockId && window._db){
+    setTimeout(function(){
+      window._fbGetDocs(window._fbQuery(window._fbCollection(window._db,"recruits"),window._fbWhere("id","==",parseInt(unlockId)))).then(function(snap){
+        snap.forEach(function(d){
+          var r = {...d.data(), _firebaseId: d.id};
+          // Unlock step 3 (index 2) in portal steps
+          var stepsKey = "nh_steps_"+r.id;
+          var steps = JSON.parse(localStorage.getItem(stepsKey) || "null");
+          if(!steps) steps = stepsData.map(function(s,i){return {completed:false,unlocked:i===0,open:false}});
+          steps[2].unlocked = true;
+          steps[2].open = true;
+          localStorage.setItem(stepsKey, JSON.stringify(steps));
+          // Update Firebase
+          window._fbUpdateDoc(window._fbDoc(window._db,"recruits",d.id),{step:2}).catch(function(e){});
+          showToast("Step 3 unlocked for "+r.first+" "+r.last+" ✓");
+        });
+      }).catch(function(e){console.error("Unlock error:",e)});
+    }, 2000);
+  }
 })();
 
-var videoWatched = true;
+const ELI_PASS = "adminmotion2026$";
+const ELI_EMAIL = "alsefoon@gmail.com";
+
+function switchEliTab(tab){
+  ["recruits"].forEach(function(t){
+    var panel = document.getElementById("eli-tab-"+t+"-panel");
+    var btn = document.getElementById("eli-tab-"+t);
+    if(panel) panel.style.display = t===tab ? "block" : "none";
+    if(btn){
+      btn.style.background = t===tab ? "var(--dark)" : "transparent";
+      btn.style.color = t===tab ? "var(--cream)" : "var(--taupe)";
+      btn.style.borderBottom = t===tab ? "2px solid var(--gold)" : "2px solid transparent";
+    }
+  });
+  if(tab==="inbox") return;
+}
+
+function eliLogin(){
+  var pw = document.getElementById("eli-pw").value;
+  if(pw === ELI_PASS){
+    if(window._db){
+      window._fbGetDocs(window._fbCollection(window._db,"recruits")).then(function(snap){
+        recruits = [];
+        snap.forEach(function(d){ recruits.push({...d.data(), _firebaseId: d.id}); });
+        saveRecruits();
+        showPage("eli-admin");
+        renderEliAdmin();
+      }).catch(function(e){ showPage("eli-admin"); renderEliAdmin(); });
+    } else { showPage("eli-admin"); renderEliAdmin(); }
+  } else {
+    document.getElementById("eli-err").style.display="block";
+  }
+}
+
+function renderEliAdmin(){
+  document.getElementById("eli-date").textContent = new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+  var table = document.getElementById("eli-table");
+  var stepNames = ["Book Exam","Email Confirmation","Waiting on Admin","Log Into Course","Study Main Material","Study Quizlets","Take Exam","Send Pass Results","Admin Verifying","Receive Password","Get Contracted"];
+  if(!recruits.length){
+    table.innerHTML = "<div style='padding:40px;text-align:center;font-size:14px;color:var(--taupe);font-style:italic;font-family:Cormorant Garamond,serif'>No recruits yet.</div>";
+    return;
+  }
+  table.innerHTML = recruits.map(function(r,i){
+    var prog = r.portalProgress || 0;
+    var stepLabel = r.recruited ? (prog >= 11 ? "✓ All Done" : "Step "+(prog+1)+": "+(stepNames[prog]||"")) : "Not Yet Recruited";
+    var rowBg = i%2===0 ? "var(--cream)" : "var(--cream2)";
+    return "<div style='display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center;background:"+rowBg+"'><div><div style='font-family:Cormorant Garamond,serif;font-size:16px;color:var(--beige-bright)'>"+r.first+" "+r.last+"</div><div style='font-size:10px;color:var(--taupe);margin-top:2px'>"+(r.date||"")+"</div></div><div style='font-size:12px;color:var(--beige)'>"+r.email+"</div><div style='font-size:12px;color:var(--beige)'>"+r.phone+"</div><div style='font-size:12px;color:var(--beige)'>"+r.state+"</div><div style='font-size:11px;color:var(--gold2)'>"+stepLabel+"</div></div>";
+  }).join("");
+}
 
 function goToQuiz(){initQuiz();showPage("quiz")}
 function toggleHowItWorks(){
@@ -1375,16 +1632,51 @@ function renderQuestion(){
     ta.id = "quiz-text-answer";
     ta.placeholder = q.placeholder || "Share your answer...";
     ta.style.cssText = "width:100%;min-height:110px;background:#faf7f2;border:1px solid #e8ddd2;color:#2a2018;padding:14px;font-family:Cormorant Garamond,serif;font-size:16px;outline:none;resize:none;line-height:1.6;transition:border-color .2s";
+    var minChars = 10;
     ta.oninput = function(){
       quizAnswers[currentQ] = this.value.trim();
-      if(this.value.trim().length > 20){next.classList.add("visible")}
+      if(this.value.trim().length > minChars){next.classList.add("visible")}
       else{next.classList.remove("visible")}
     };
     opts.appendChild(ta);
     var hint = document.createElement("p");
     hint.style.cssText = "font-size:10px;color:#9a8878;margin-top:8px;letter-spacing:.1em;font-style:italic";
-    hint.textContent = "2 to 3 sentences minimum required to continue";
+    hint.textContent = "At least one sentence required to continue";
     opts.appendChild(hint);
+  } else if(q.type === "commitment"){
+    q.opts.forEach(function(o,i){
+      var btn = document.createElement("button");
+      btn.className = "quiz-opt";
+      btn.textContent = o;
+      btn.onclick = function(){
+        selectOpt(btn,i);
+        // Save Yes/No as readable text immediately
+        if(i===0) quizAnswers[currentQ] = "Yes, absolutely — I'm ready to commit";
+        if(i===2) quizAnswers[currentQ] = "No, I can't commit to that right now";
+        // Show/hide maybe box
+        var maybeBox = document.getElementById("maybe-inline-box");
+        if(maybeBox) maybeBox.style.display = i===1 ? "block" : "none";
+        if(i!==1){
+          var mt = document.getElementById("maybe-text");
+          if(mt) mt.value = "";
+        }
+      };
+      opts.appendChild(btn);
+    });
+
+    // Inline maybe box — hidden by default
+    var maybeBox = document.createElement("div");
+    maybeBox.id = "maybe-inline-box";
+    maybeBox.style.cssText = "display:none;margin-top:20px;border:1px solid var(--gold);background:var(--cream);padding:20px;animation:fadeIn .3s ease";
+    maybeBox.innerHTML = "<p style='font-family:Cormorant Garamond,serif;font-size:19px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.4'>Explain more about your situation — how much time can you put in?</p><p style='font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px'>Keep in mind this is full time.</p><textarea id='maybe-text' placeholder='Tell us about your current situation...' style='width:100%;min-height:90px;background:#faf7f2;border:1px solid #e8ddd2;color:#2a2018;padding:14px;font-family:Cormorant Garamond,serif;font-size:15px;outline:none;resize:none;line-height:1.6;transition:border-color .2s' oninput='quizAnswers[currentQ]=\"Maybe: \"+this.value.trim();'></textarea><p style='font-size:10px;color:#9a8878;margin-top:6px;font-style:italic;letter-spacing:.08em'>Required — must answer to continue</p>";
+    opts.appendChild(maybeBox);
+
+    if(q.note){
+      var noteEl = document.createElement("p");
+      noteEl.style.cssText = "font-size:14px;color:var(--taupe);margin-top:18px;font-style:italic;font-family:Cormorant Garamond,serif;line-height:1.7;text-align:center";
+      noteEl.textContent = q.note;
+      opts.appendChild(noteEl);
+    }
   } else {
     q.opts.forEach(function(o,i){
       var btn = document.createElement("button");
@@ -1412,7 +1704,25 @@ function selectOpt(btn,idx){
 }
 
 function nextQuestion(){
-  if(quizAnswers[currentQ]===undefined && questions[currentQ].type!=="text") return;
+  if(quizAnswers[currentQ]===undefined && questions[currentQ].type!=="text" && questions[currentQ].type!=="availability") return;
+
+  // If commitment question
+  if(questions[currentQ].type === "commitment"){
+    if(quizAnswers[currentQ] === 2){
+      showPage("not-a-fit");
+      return;
+    }
+    if(quizAnswers[currentQ] === 1 || (typeof quizAnswers[currentQ] === "string" && quizAnswers[currentQ].startsWith("Maybe:"))){
+      var maybeText = document.getElementById("maybe-text");
+      if(!maybeText || maybeText.value.trim().length < 10){
+        if(maybeText) maybeText.style.borderColor = "var(--gold)";
+        maybeText && maybeText.focus();
+        return;
+      }
+      quizAnswers[currentQ] = "Maybe: " + maybeText.value.trim();
+    }
+  }
+
   currentQ++;
   if(currentQ >= questions.length){
     var lastOptCount = quizAnswers.filter(function(a){return a===3}).length;
@@ -1433,10 +1743,18 @@ function submitForm(){
   currentRecruit = {id:Date.now(),first:first,last:last,email:email,phone:phone,state:state,instagram:instagram,rank:"B",recruited:false,step:0,date:new Date().toLocaleDateString(),quizAnswers:quizAnswers.slice(),appt:null};
   recruits.push(currentRecruit);
   saveRecruits();
+  // Save to Firebase
+  if(window._db){
+    window._fbAddDoc(window._fbCollection(window._db,"recruits"), currentRecruit).then(function(docRef){
+      currentRecruit._firebaseId = docRef.id;
+    }).catch(function(e){console.error("Firebase save error:",e)});
+  }
   showPage("calendar");
 }
 
 function getAnswerText(qIdx, answerVal){
+  // If the answer is already a string (text answer or maybe explanation), return it directly
+  if(typeof answerVal === "string") return answerVal || "—";
   if(qOpts[qIdx] === null) return answerVal || "—";
   return qOpts[qIdx][answerVal] || "—";
 }
@@ -1449,27 +1767,206 @@ function toggleRecruit(i){
 function renderAdmin(){
   document.getElementById("admin-date").textContent = new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
   document.getElementById("stat-total").textContent = recruits.length;
-  document.getElementById("stat-a").textContent = recruits.filter(function(r){return r.rank==="A"}).length;
+  document.getElementById("stat-booked").textContent = recruits.filter(function(r){return r.appt}).length;
   document.getElementById("stat-recruited").textContent = recruits.filter(function(r){return r.recruited}).length;
-  document.getElementById("stat-pending").textContent = recruits.filter(function(r){return !r.recruited}).length;
+  filterTable('all');
+}
+
+var currentFilter = 'all';
+function filterTable(filter){
+  currentFilter = filter;
+  var filtered = recruits;
+  if(filter==='booked') filtered = recruits.filter(function(r){return r.appt});
+  if(filter==='recruited') filtered = recruits.filter(function(r){return r.recruited});
   var table = document.getElementById("recruit-table");
-  if(!recruits.length){
-    table.innerHTML = "<div style='padding:40px;text-align:center;font-size:14px;color:var(--taupe);font-style:italic;font-family:Cormorant Garamond,serif'>No recruits yet. They will appear here once they apply.</div>";
+  if(!filtered.length){
+    table.innerHTML = "<div style='padding:40px;text-align:center;font-size:14px;color:var(--beige);font-style:italic;font-family:Cormorant Garamond,serif'>No recruits yet. They will appear here once they apply.</div>";
     return;
   }
-  table.innerHTML = recruits.map(function(r,i){
+  table.innerHTML = filtered.map(function(r,i){
+    var realIdx = recruits.indexOf(r);
     var answers = qLabels.map(function(label,qi){
-      return "<div style='padding:12px 16px;background:var(--white);border:1px solid var(--border);margin-bottom:8px'><div style='font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:6px'>"+label+"</div><div style='font-family:Cormorant Garamond,serif;font-size:16px;color:var(--dark);font-style:italic'>"+(r.quizAnswers&&r.quizAnswers[qi]!==undefined?getAnswerText(qi,r.quizAnswers[qi]):"Not answered")+"</div></div>";
+      return "<div style='padding:12px 16px;background:var(--cream2);border:1px solid var(--border);margin-bottom:8px'><div style='font-size:9px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:6px'>"+label+"</div><div style='font-family:Cormorant Garamond,serif;font-size:16px;color:var(--beige);font-style:italic'>"+(r.quizAnswers&&r.quizAnswers[qi]!==undefined?getAnswerText(qi,r.quizAnswers[qi]):"Not answered")+"</div></div>";
     }).join("");
 
-    return "<div style='border-bottom:1px solid var(--border)'><div class='recruit-row' onclick='toggleRecruit("+i+")' style='cursor:pointer'><div><div class='recruit-name'>"+r.first+" "+r.last+"</div><div class='recruit-email'>"+r.email+"</div><div class='recruit-email' style='color:var(--gold2);font-size:10px'>"+( r.date||"")+"</div></div><div><div class='recruit-contact'>"+r.phone+"</div><div class='recruit-contact' style='margin-top:3px'>"+r.state+"</div>"+(r.instagram?"<div class='recruit-contact' style='margin-top:4px'><a href='https://instagram.com/"+r.instagram+"' target='_blank' style='display:inline-flex;align-items:center;gap:5px;color:var(--gold2);text-decoration:none;font-size:10px;letter-spacing:.05em;transition:color .2s' onmouseover='this.style.color=\"var(--dark)\"' onmouseout='this.style.color=\"var(--gold2)\"'><svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8'><rect x='2' y='2' width='20' height='20' rx='5'/><circle cx='12' cy='12' r='4'/><circle cx='17.5' cy='6.5' r='1' fill='currentColor' stroke='none'/></svg>@"+r.instagram+"</a></div>":"")+"<div class='recruit-contact' style='margin-top:3px;color:var(--gold2)'>"+(r.appt ? "<span style='color:var(--gold2)'>✓ Booked: "+r.appt+"</span>" : "<span style='color:var(--border);font-size:10px'>No appointment booked</span>")+"</div></div><div><select class='rank-select' onchange='setRank("+i+",this.value)' onclick='event.stopPropagation()'><option "+(r.rank==="A"?"selected":"")+" value='A'>A</option><option "+(r.rank==="B"?"selected":"")+" value='B'>B</option><option "+(r.rank==="C"?"selected":"")+" value='C'>C</option><option "+(r.rank==="D"?"selected":"")+" value='D'>D</option></select></div><div style='font-size:11px;color:var(--gold2);font-weight:300'>"+(function(){var prog=r.portalProgress||0;var total=11;var steps=["Book Exam","Email Confirmation","Waiting on Admin","Log Into Course","Study Main Material","Study Quizlets","Take Exam","Send Pass Results","Admin Verifying","Receive Password","Get Contracted"];var label=prog>=total?"✓ All Done":("Step "+(prog+1)+"/"+total+": "+(steps[prog]||""));return label;}())+"</div><div style='display:flex;flex-direction:column;gap:6px'>"+"<select class='rank-select' onchange='setRecruitStatus("+i+",this.value)' onclick='event.stopPropagation()' style='min-width:130px;background:"+(r.recruited?"var(--gold)":"var(--white)")+";color:"+(r.recruited?"#fff":"var(--dark)")+";border:1px solid "+(r.recruited?"var(--gold)":"var(--border)")+"'><option value='unrecruited' "+(r.recruited?"":"selected")+">Unrecruited</option><option value='recruited' "+(r.recruited?"selected":"")+">✓ Recruited</option></select>"+(r.step===2||r.step===8?"<button class='recruited-btn' style='background:var(--gold);color:#fff;border:none;margin-top:4px;font-weight:400' onclick='event.stopPropagation();adminUnlockStep("+i+")'>🔓 Unlock Step "+(( r.step||0)+1)+"</button>":"")+"</div><div style='color:var(--taupe);font-size:12px'>View Answers</div></div><div id='recruit-detail-"+i+"' style='display:none;padding:24px 20px;background:var(--cream);border-top:1px solid var(--border)'><p style='font-size:8px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--taupe);margin-bottom:16px'>Quiz Answers</p>"+answers+"</div></div>";
+    var rowBg = realIdx%2===0 ? "var(--cream)" : "var(--cream2)";
+    return "<div style='border-bottom:1px solid var(--border)'><div class='recruit-row' onclick='toggleRecruit("+realIdx+")' style='cursor:pointer;background:"+rowBg+"'><div><div class='recruit-name' style='color:var(--beige-bright)'>"+r.first+" "+r.last+"</div><div class='recruit-email' style='color:var(--gold2)'>"+r.email+"</div><div class='recruit-email' style='color:var(--taupe);font-size:10px'>"+(r.date||"")+"</div></div><div><div class='recruit-contact' style='color:var(--beige)'>"+r.phone+"</div><div class='recruit-contact' style='margin-top:3px;color:var(--beige)'>"+r.state+"</div>"+(r.instagram?"<div class='recruit-contact' style='margin-top:4px'><a href='https://instagram.com/"+r.instagram+"' target='_blank' style='display:inline-flex;align-items:center;gap:5px;color:var(--gold2);text-decoration:none;font-size:10px;letter-spacing:.05em;transition:color .2s' onmouseover='this.style.color=\"var(--beige)\"' onmouseout='this.style.color=\"var(--gold2)\"'><svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8'><rect x='2' y='2' width='20' height='20' rx='5'/><circle cx='12' cy='12' r='4'/><circle cx='17.5' cy='6.5' r='1' fill='currentColor' stroke='none'/></svg>@"+r.instagram+"</a></div>":"")+"<div class='recruit-contact' style='margin-top:3px'>"+(r.appt ? "<span style='color:var(--gold)'>✓ Booked: "+r.appt+"</span>" : "<span style='color:var(--taupe);font-size:10px'>No appointment booked</span>")+"</div></div><div><select class='rank-select' onchange='setRank("+realIdx+",this.value)' onclick='event.stopPropagation()' style='color:var(--beige);background:var(--cream2);border:1px solid var(--border)'><option "+(r.rank==="A"?"selected":"")+" value='A'>A</option><option "+(r.rank==="B"?"selected":"")+" value='B'>B</option><option "+(r.rank==="C"?"selected":"")+" value='C'>C</option></select></div><div style='font-size:11px;color:var(--gold2);font-weight:300'>"+(function(){var prog=r.portalProgress||0;var total=11;var steps=["Book Exam","Email Confirmation","Waiting on Admin","Log Into Course","Study Main Material","Study Quizlets","Take Exam","Send Pass Results","Admin Verifying","Receive Password","Get Contracted"];var label=prog>=total?"✓ All Done":("Step "+(prog+1)+"/"+total+": "+(steps[prog]||""));return label;}())+"</div><div style='display:flex;flex-direction:column;gap:6px'><select class='rank-select' onchange='setRecruitStatus("+realIdx+",this.value)' onclick='event.stopPropagation()' style='min-width:130px;background:"+(r.recruited?"var(--gold)":"var(--cream2)")+";color:"+(r.recruited?"#fff":"var(--beige)")+";border:1px solid "+(r.recruited?"var(--gold)":"var(--border)")+"'><option value='unrecruited' "+(r.recruited?"":"selected")+">Unrecruited</option><option value='recruited' "+(r.recruited?"selected":"")+">✓ Recruited</option></select>"+(r.step===2||r.step===8?"<button class='recruited-btn' style='background:var(--gold);color:#fff;border:none;margin-top:4px;font-weight:400' onclick='event.stopPropagation();adminUnlockStep("+realIdx+")'>🔓 Unlock Step "+((r.step||0)+1)+"</button>":"")+"<button class='recruited-btn' style='background:transparent;color:#c04040;border:1px solid #c04040;margin-top:4px' onclick='event.stopPropagation();deleteRecruit("+realIdx+")'>🗑 Delete</button>"+"</div><div style='color:var(--gold2);font-size:12px'>View Answers</div></div><div id='recruit-detail-"+realIdx+"' style='display:none;padding:24px 20px;background:var(--cream2);border-top:1px solid var(--border)'><p style='font-size:8px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px'>Quiz Answers</p>"+answers+"</div></div>";
   }).join("");
+}
+
+function switchAdminTab(tab){
+  ["recruits","pipeline","calendar"].forEach(function(t){
+    var panel = document.getElementById("admin-tab-"+t);
+    var btn = document.getElementById("tab-"+t);
+    if(panel) panel.style.display = t===tab ? "block" : "none";
+    if(btn){
+      btn.style.background = t===tab ? "var(--dark)" : "transparent";
+      btn.style.color = t===tab ? "var(--cream)" : "var(--taupe)";
+      btn.style.borderBottom = t===tab ? "2px solid var(--gold)" : "2px solid transparent";
+    }
+  });
+  if(tab==="pipeline") renderPipeline();
+  if(tab==="calendar") renderAdminCalendar();
+}
+
+function renderAdminCalendar(){
+  var el = document.getElementById("admin-calendar-view");
+  if(!el) return;
+
+  // Get all booked recruits sorted by appointment date
+  var booked = recruits.filter(function(r){ return r.appt; }).slice();
+  booked.sort(function(a,b){
+    return new Date(a.appt) - new Date(b.appt);
+  });
+
+  if(!booked.length){
+    el.innerHTML = "<div style='padding:60px;text-align:center;font-family:Cormorant Garamond,serif;font-size:20px;font-style:italic;color:var(--taupe)'>No appointments booked yet.</div>";
+    return;
+  }
+
+  // Group by date string
+  var groups = {};
+  var order = [];
+  booked.forEach(function(r){
+    // appt looks like "Friday, May 23, 2026 at 3:00 PM"
+    var parts = r.appt.split(" at ");
+    var dateKey = parts[0] || r.appt;
+    if(!groups[dateKey]){ groups[dateKey]=[]; order.push(dateKey); }
+    groups[dateKey].push(r);
+  });
+
+  var html = "<div style='max-width:700px'>";
+  html += "<p style='font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:24px'>"+booked.length+" Appointment"+(booked.length!==1?"s":"")+" Booked</p>";
+
+  order.forEach(function(dateKey){
+    html += "<div style='margin-bottom:28px'>";
+    html += "<div style='font-family:Cormorant Garamond,serif;font-size:22px;color:var(--dark);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)'>"+dateKey+"</div>";
+    groups[dateKey].forEach(function(r){
+      var parts = r.appt.split(" at ");
+      var time = parts[1] || "";
+      html += "<div style='display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--cream);border:1px solid var(--border);margin-bottom:6px'>";
+      html += "<div style='display:flex;align-items:center;gap:16px'>";
+      html += "<div style='font-family:Cormorant Garamond,serif;font-size:15px;font-weight:600;color:var(--gold);min-width:70px'>"+time+"</div>";
+      html += "<div><div style='font-family:Cormorant Garamond,serif;font-size:18px;color:var(--dark)'>"+r.first+" "+r.last+"</div>";
+      html += "<div style='font-size:10px;color:var(--taupe);margin-top:2px'>"+r.email+" · "+r.phone+"</div></div></div>";
+      html += "<div style='font-size:9px;color:var(--gold2);letter-spacing:.1em;text-transform:uppercase'>5 min call</div>";
+      html += "</div>";
+    });
+    html += "</div>";
+  });
+
+  html += "</div>";
+  el.innerHTML = html;
+}
+
+function showProfilePopup(r){
+  var existing = document.getElementById("profile-popup");
+  if(existing) document.body.removeChild(existing);
+  var popup = document.createElement("div");
+  popup.id = "profile-popup";
+  popup.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)";
+  var answers = qLabels.map(function(label,qi){
+    return "<div style='padding:10px 14px;background:var(--cream2);border:1px solid var(--border);margin-bottom:6px'><div style='font-size:8px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px'>"+label+"</div><div style='font-family:Cormorant Garamond,serif;font-size:15px;color:var(--beige);font-style:italic'>"+(r.quizAnswers&&r.quizAnswers[qi]!==undefined?getAnswerText(qi,r.quizAnswers[qi]):"Not answered")+"</div></div>";
+  }).join("");
+  popup.innerHTML = "<div style='background:var(--white);border:1px solid var(--border);padding:36px;max-width:500px;width:90%;max-height:85vh;overflow-y:auto'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:24px'><div><div style='font-family:Cormorant Garamond,serif;font-size:28px;color:var(--beige-bright)'>"+r.first+" "+r.last+"</div><div style='font-size:10px;color:var(--gold2);letter-spacing:.1em;margin-top:2px'>"+r.state+"</div></div><button onclick='document.body.removeChild(document.getElementById(\"profile-popup\"))' style='background:none;border:1px solid var(--border);color:var(--taupe);width:32px;height:32px;cursor:pointer;font-size:16px'>×</button></div><div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px'><div style='padding:12px;background:var(--cream2);border:1px solid var(--border)'><div style='font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px'>Email</div><div style='font-size:13px;color:var(--beige)'>"+r.email+"</div></div><div style='padding:12px;background:var(--cream2);border:1px solid var(--border)'><div style='font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px'>Phone</div><div style='font-size:13px;color:var(--beige)'>"+r.phone+"</div></div>"+(r.instagram?"<div style='padding:12px;background:var(--cream2);border:1px solid var(--border)'><div style='font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px'>Instagram</div><a href='https://instagram.com/"+r.instagram+"' target='_blank' style='font-size:13px;color:var(--gold2);text-decoration:none'>@"+r.instagram+"</a></div>":"")+(r.appt?"<div style='padding:12px;background:var(--cream2);border:1px solid var(--border)'><div style='font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px'>Appointment</div><div style='font-size:13px;color:var(--gold)'>"+r.appt+"</div></div>":"")+"</div><p style='font-size:8px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px'>Quiz Answers</p>"+answers+"</div>";
+  document.body.appendChild(popup);
+}
+
+function renderPipeline(){
+  var allStages = [
+    {key:"Applied", label:"Applied", color:"var(--taupe)"},
+    {key:"Booked a Call", label:"Booked Call", color:"var(--gold2)"},
+    {key:"Step 1 — Book Exam", label:"Book Exam", color:"var(--dark)"},
+    {key:"Step 2 — Email Confirmation", label:"Email Confirm.", color:"var(--dark)"},
+    {key:"Step 3 — Waiting on Admin", label:"Waiting Admin", color:"var(--dark)"},
+    {key:"Step 4 — Log Into Course", label:"Log In Course", color:"var(--dark)"},
+    {key:"Step 5 — Study Main Material", label:"Study Material", color:"var(--dark)"},
+    {key:"Step 6 — Study Quizlets", label:"Study Quizlets", color:"var(--dark)"},
+    {key:"Step 7 — Take Exam", label:"Take Exam", color:"var(--dark)"},
+    {key:"Step 8 — Send Pass Results", label:"Send Results", color:"var(--dark)"},
+    {key:"Step 9 — Admin Verifying", label:"Admin Verify", color:"var(--dark)"},
+    {key:"Step 10 — Receive Password", label:"Recv. Password", color:"var(--dark)"},
+    {key:"Step 11 — Get Contracted", label:"Get Contracted", color:"var(--dark)"},
+    {key:"✓ All Done", label:"All Done ✓", color:"var(--gold)"}
+  ];
+  var stages = {};
+  allStages.forEach(function(s){ stages[s.key] = []; });
+  var stepNames = ["Step 1 — Book Exam","Step 2 — Email Confirmation","Step 3 — Waiting on Admin","Step 4 — Log Into Course","Step 5 — Study Main Material","Step 6 — Study Quizlets","Step 7 — Take Exam","Step 8 — Send Pass Results","Step 9 — Admin Verifying","Step 10 — Receive Password","Step 11 — Get Contracted"];
+  recruits.forEach(function(r){
+    if(!r.recruited){
+      if(r.appt) stages["Booked a Call"].push(r);
+      else stages["Applied"].push(r);
+      return;
+    }
+    var prog = r.portalProgress || 0;
+    if(prog >= 11){ stages["✓ All Done"].push(r); return; }
+    stages[stepNames[prog] || "Step 1 — Book Exam"].push(r);
+  });
+
+  var el = document.getElementById("pipeline-view");
+
+  // Selected stage state
+  if(!window._pipelineSelected) window._pipelineSelected = null;
+
+  function renderTiles(){
+    el.innerHTML = "";
+
+    // Tiles row
+    var tilesRow = document.createElement("div");
+    tilesRow.style.cssText = "display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px";
+    allStages.forEach(function(s){
+      var count = stages[s.key].length;
+      var isSelected = window._pipelineSelected === s.key;
+      var tile = document.createElement("div");
+      tile.style.cssText = "padding:10px 14px;border:1px solid "+(isSelected?"var(--gold)":"var(--border)")+";background:"+(isSelected?"var(--cream2)":"var(--white)")+";cursor:pointer;transition:all .2s;min-width:100px;text-align:center";
+      tile.innerHTML = "<div style='font-size:18px;font-family:Cormorant Garamond,serif;color:"+s.color+";font-weight:400'>"+count+"</div><div style='font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:"+(isSelected?"var(--beige)":"var(--taupe)")+";margin-top:3px'>"+s.label+"</div>";
+      tile.onmouseover = function(){ if(!isSelected) this.style.borderColor="var(--dark)"; };
+      tile.onmouseout = function(){ if(!isSelected) this.style.borderColor="var(--border)"; };
+      tile.onclick = function(){
+        window._pipelineSelected = isSelected ? null : s.key;
+        renderTiles();
+      };
+      tilesRow.appendChild(tile);
+    });
+    el.appendChild(tilesRow);
+
+    // People panel
+    if(window._pipelineSelected){
+      var people = stages[window._pipelineSelected];
+      var panel = document.createElement("div");
+      panel.style.cssText = "border:1px solid var(--gold);background:var(--cream2);padding:20px";
+      var stageInfo = allStages.find(function(s){return s.key===window._pipelineSelected});
+      panel.innerHTML = "<p style='font-size:9px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px'>"+(stageInfo?stageInfo.label:window._pipelineSelected)+"</p>";
+      if(!people.length){
+        panel.innerHTML += "<p style='font-family:Cormorant Garamond,serif;font-size:16px;font-style:italic;color:var(--taupe)'>No one in this stage yet.</p>";
+      } else {
+        var grid = document.createElement("div");
+        grid.style.cssText = "display:flex;flex-wrap:wrap;gap:10px";
+        people.forEach(function(r){
+          var card = document.createElement("div");
+          card.style.cssText = "padding:14px 18px;background:var(--white);border:1px solid var(--border);cursor:pointer;min-width:200px;transition:border-color .2s";
+          card.onmouseover = function(){ this.style.borderColor="var(--gold)"; };
+          card.onmouseout = function(){ this.style.borderColor="var(--border)"; };
+          card.onclick = function(){ showProfilePopup(r); };
+          card.innerHTML = "<div style='font-family:Cormorant Garamond,serif;font-size:17px;color:var(--beige-bright)'>"+r.first+" "+r.last+"</div><div style='font-size:10px;color:var(--gold2);margin-top:3px'>"+r.email+"</div><div style='font-size:10px;color:var(--taupe);margin-top:2px'>"+r.phone+"</div>"+(r.appt?"<div style='font-size:10px;color:var(--gold);margin-top:4px'>📅 "+r.appt+"</div>":"");
+          grid.appendChild(card);
+        });
+        panel.appendChild(grid);
+      }
+      el.appendChild(panel);
+    }
+  }
+  renderTiles();
 }
 
 function setRank(idx,val){recruits[idx].rank=val;saveRecruits();renderAdmin()}
 function setRecruitStatus(idx,val){
   if(val==="recruited"){
     recruits[idx].recruited=true;saveRecruits();renderAdmin();
+    // Sync to Firebase
+    if(window._db && recruits[idx]._firebaseId){
+      window._fbUpdateDoc(window._fbDoc(window._db,"recruits",recruits[idx]._firebaseId),{recruited:true}).catch(function(e){console.error("Firebase update error:",e)});
+    }
     var r=recruits[idx];
     var pass=r.first.toLowerCase()+r.last.toLowerCase()+"2026";
     emailjs.send("service_vjilj5a","template_kj4fvdx",{
@@ -1483,32 +1980,111 @@ function setRecruitStatus(idx,val){
       console.error("EmailJS error:",err);
     });
   } else {
-    recruits[idx].recruited=false;saveRecruits();renderAdmin();showToast(recruits[idx].first+"'s access has been revoked");
+    recruits[idx].recruited=false;saveRecruits();renderAdmin();
+    // Sync to Firebase
+    if(window._db && recruits[idx]._firebaseId){
+      window._fbUpdateDoc(window._fbDoc(window._db,"recruits",recruits[idx]._firebaseId),{recruited:false}).catch(function(e){console.error("Firebase update error:",e)});
+    }
+    showToast(recruits[idx].first+"'s access has been revoked");
   }
 }
 function adminUnlockStep(idx){recruits[idx].step=(recruits[idx].step||0)+1;saveRecruits();renderAdmin();showToast("Step unlocked for "+recruits[idx].first)}
 
+function deleteRecruit(idx){
+  var r = recruits[idx];
+  if(!confirm("Delete " + r.first + " " + r.last + "? This cannot be undone.")) return;
+  // Delete from Firebase
+  if(window._db && r._firebaseId){
+    window._fbDeleteDoc(window._fbDoc(window._db,"recruits",r._firebaseId)).catch(function(e){console.error("Delete error:",e)});
+  }
+  // Clear their portal steps from localStorage
+  localStorage.removeItem("nh_steps_"+r.id);
+  // Remove from local array
+  recruits.splice(idx,1);
+  saveRecruits();
+  renderAdmin();
+  showToast(r.first+" deleted ✓");
+}
+
+function deleteAllRecruits(){
+  if(!confirm("Delete ALL applicants? This cannot be undone.")) return;
+  // Clear Firebase
+  if(window._db){
+    window._fbGetDocs(window._fbCollection(window._db,"recruits")).then(function(snap){
+      snap.forEach(function(d){
+        window._fbDeleteDoc(window._fbDoc(window._db,"recruits",d.id)).catch(function(e){console.error("Delete error:",e)});
+      });
+    });
+  }
+  // Clear local
+  recruits = [];
+  localStorage.removeItem("nh_recruits");
+  saveRecruits();
+  renderAdmin();
+  showToast("All applicants deleted ✓");
+}
+
 function adminLogin(){
   var pw = document.getElementById("admin-pw").value;
-  if(pw===ADMIN_PASS){showPage("admin");renderAdmin()}
-  else{document.getElementById("admin-err").style.display="block"}
+  if(pw===ADMIN_PASS){
+    if(window._db){
+      window._fbGetDocs(window._fbCollection(window._db,"recruits")).then(function(snap){
+        recruits = [];
+        snap.forEach(function(d){ recruits.push({...d.data(), _firebaseId: d.id}); });
+        saveRecruits();
+        showPage("admin");renderAdmin();
+      }).catch(function(e){
+        console.error("Firebase load error:",e);
+        showPage("admin");renderAdmin();
+      });
+    } else {
+      showPage("admin");renderAdmin();
+    }
+  } else {
+    document.getElementById("admin-err").style.display="block";
+  }
 }
 
 function portalLogin(){
   var pw = document.getElementById("portal-pw").value.trim();
-  // Admin can log in with their password and see a general view
   if(pw === ADMIN_PASS){
     currentRecruit = {first:"Nansi",last:"Hanna",email:"nansihanna.ffl@gmail.com",phone:"",state:"",rank:"A",recruited:true,step:0,id:"admin-preview"};
     showPage("portal");initPortalSteps();renderPortal();
     return;
   }
   var pwLower = pw.toLowerCase();
+  // Check local first
   var matched = recruits.find(function(r){
     var personal = r.first.toLowerCase()+r.last.toLowerCase()+"2026";
     return pwLower === personal && r.recruited;
   });
-  if(matched){currentRecruit=matched;showPage("portal");initPortalSteps();renderPortal()}
-  else{document.getElementById("portal-err").style.display="block"}
+  if(matched){currentRecruit=matched;showPage("portal");initPortalSteps();renderPortal();return;}
+  // Check Firebase
+  if(window._db){
+    window._fbGetDocs(window._fbQuery(window._fbCollection(window._db,"recruits"),window._fbWhere("recruited","==",true))).then(function(snap){
+      var fbMatched = null;
+      snap.forEach(function(d){
+        var r = {...d.data(), _firebaseId: d.id};
+        var personal = r.first.toLowerCase()+r.last.toLowerCase()+"2026";
+        if(pwLower === personal) fbMatched = r;
+      });
+      if(fbMatched){
+        currentRecruit = fbMatched;
+        // Add to local recruits if not there
+        var exists = recruits.find(function(r){return r.id === fbMatched.id});
+        if(!exists) recruits.push(fbMatched);
+        saveRecruits();
+        showPage("portal");initPortalSteps();renderPortal();
+      } else {
+        document.getElementById("portal-err").style.display="block";
+      }
+    }).catch(function(e){
+      console.error("Firebase login error:",e);
+      document.getElementById("portal-err").style.display="block";
+    });
+  } else {
+    document.getElementById("portal-err").style.display="block";
+  }
 }
 
 function initPortalSteps(){
@@ -1560,19 +2136,32 @@ function renderPortal(){
       statusText="Locked";
     }
     var el = document.createElement("div");
-    var canClick = (state.unlocked && !state.completed) ? "onclick='toggleStep("+i+")' style='cursor:pointer'" : "";
-    var lockBadge = (!state.unlocked) ? "<div style='color:var(--border);font-size:14px'>🔒</div>" : (state.completed ? "<div style='color:var(--gold);font-size:16px'>✓</div>" : "<div class='step-arrow'>›</div>");
+    var canClick = (state.unlocked || state.completed) ? "onclick='toggleStep("+i+")' style='cursor:pointer'" : "";
+    var lockBadge = (!state.unlocked && !state.completed) ? "<div style='color:var(--border);font-size:14px'>🔒</div>" : (state.completed ? "<div style='color:var(--gold);font-size:16px'>✓</div>" : "<div class='step-arrow'>›</div>");
     el.className = cls;
-    el.innerHTML = "<div class='step-header' "+canClick+"><div class='step-num'>"+String(i+1).padStart(2,"0")+"</div><div class='step-title-wrap'><div class='step-title'>"+s.title+"</div><div class='step-status'>"+statusText+"</div></div>"+lockBadge+"</div>"+(state.unlocked?"<div class='step-body "+(state.open?"open":"")+"' id='step-body-"+i+"'><div class='step-content'>"+s.content+"</div>"+(state.unlocked&&!state.completed&&s.completable?"<button class='complete-step-btn' onclick='completeStep("+i+")'>Mark Complete ✓</button>":"")+(state.completed?"<button onclick='uncompleteStep("+i+")' style='margin-top:10px;padding:8px 20px;background:transparent;border:1px solid var(--border);color:var(--taupe);font-family:\"Inter\",sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s' onmouseover='this.style.borderColor=\"var(--dark)\";this.style.color=\"var(--dark)\"' onmouseout='this.style.borderColor=\"var(--border)\";this.style.color=\"var(--taupe)\"'>← Go Back</button>":"")+"</div>":"");
+    el.innerHTML = "<div class='step-header' "+canClick+"><div class='step-num'>"+String(i+1).padStart(2,"0")+"</div><div class='step-title-wrap'><div class='step-title'>"+s.title+"</div><div class='step-status'>"+statusText+"</div></div>"+lockBadge+"</div>"+((state.unlocked||state.completed)?"<div class='step-body "+(state.open?"open":"")+"' id='step-body-"+i+"'><div class='step-content'>"+s.content+"</div>"+(state.unlocked&&!state.completed&&s.completable?"<button class='complete-step-btn' onclick='completeStep("+i+")'>Mark Complete ✓</button>":"")+(state.completed?"<button onclick='uncompleteStep("+i+")' style='margin-top:10px;padding:8px 20px;background:transparent;border:1px solid var(--border);color:var(--taupe);font-family:\"Inter\",sans-serif;font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s' onmouseover='this.style.borderColor=\"var(--dark)\";this.style.color=\"var(--dark)\"' onmouseout='this.style.borderColor=\"var(--border)\";this.style.color=\"var(--taupe)\"'>← Go Back</button>":"")+"</div>":"");
     container.appendChild(el);
   });
 }
 
 function toggleStep(i){
-  if(!portalSteps[i].unlocked) return;
+  if(!portalSteps[i].unlocked && !portalSteps[i].completed) return;
   portalSteps[i].open = !portalSteps[i].open;
   savePortalSteps();
   renderPortal();
+}
+
+function sendNansiNotification(subject, messageBody, recruitName){
+  emailjs.send("service_vjilj5a", "template_kldk4r8", {
+    name: "Elite Motional Portal — " + recruitName,
+    subject: subject,
+    message: messageBody,
+    reply_to: ADMIN_EMAIL
+  }).then(function(){
+    console.log("Nansi notified: " + subject);
+  }, function(err){
+    console.error("EmailJS notification error:", err);
+  });
 }
 
 function completeStep(i){
@@ -1586,17 +2175,54 @@ function completeStep(i){
   savePortalSteps();
   renderPortal();
   showToast("Step "+(i+1)+" complete!");
+
+  if(!currentRecruit) return;
+  var r = currentRecruit;
+  var fullName = r.first + " " + r.last;
+
+  // Step 2 (index 1) — exam confirmation sent — Nansi needs to unlock Step 3
+  if(i === 1){
+    sendNansiNotification(
+      "ACTION REQUIRED — Unlock Step 3 for " + fullName,
+      "Hi Nansi,\n\n" +
+      fullName + " has completed Step 2 and emailed you their exam confirmation.\n\n" +
+      "ACTION NEEDED NOW:\n" +
+      "Log into the Owner Dashboard and click the Unlock button next to " + r.first + " " + r.last + " to unlock Step 3.\n\n" +
+      "BOTH STEPS THAT REQUIRE YOU:\n" +
+      "  Step 3 — Unlock NOW (exam confirmation received)\n" +
+      "  Step 9 — Unlock LATER (after they email you their passing exam results)\n\n" +
+      "RECRUIT INFO:\n" +
+      "  Name:  " + fullName + "\n" +
+      "  Email: " + r.email + "\n" +
+      "  Phone: " + r.phone + "\n" +
+      "  State: " + r.state + "\n\n" +
+      "— Elite Motional Financial Portal",
+      fullName
+    );
+  }
+
+  // Step 8 (index 7) — pass results sent — Nansi needs to unlock Step 9
+  if(i === 7){
+    sendNansiNotification(
+      "ACTION REQUIRED — Unlock Step 9 for " + fullName,
+      "Hi Nansi,\n\n" +
+      fullName + " has passed their exam and emailed you their results.\n\n" +
+      "ACTION NEEDED NOW:\n" +
+      "Log into the Owner Dashboard and click the Unlock button next to " + r.first + " " + r.last + " to unlock Step 9.\n\n" +
+      "RECRUIT INFO:\n" +
+      "  Name:  " + fullName + "\n" +
+      "  Email: " + r.email + "\n" +
+      "  Phone: " + r.phone + "\n" +
+      "  State: " + r.state + "\n\n" +
+      "— Elite Motional Financial Portal",
+      fullName
+    );
+  }
 }
 
 function uncompleteStep(i){
   portalSteps[i].completed = false;
   portalSteps[i].open = true;
-  var next = i+1;
-  if(next < stepsData.length){
-    portalSteps[next].unlocked = false;
-    portalSteps[next].completed = false;
-    portalSteps[next].open = false;
-  }
   savePortalSteps();
   renderPortal();
   showToast("Step "+(i+1)+" reopened");
@@ -1615,8 +2241,8 @@ function renderCalendar(){
     var el=document.createElement("div");
     el.textContent=d;
     var isPast=date<minBookDate;
-    var isWeekend=date.getDay()===0||date.getDay()===6;
-    if(isPast||isWeekend){el.className="cal-day past"}
+    var isSunday=date.getDay()===0;
+    if(isPast||isSunday){el.className="cal-day past"}
     else{el.className="cal-day available";(function(dt){el.onclick=function(){selectDate(el,dt)}})(date)}
     days.appendChild(el);
   }
@@ -1629,7 +2255,7 @@ function selectDate(el,date){
   document.querySelectorAll(".cal-day").forEach(function(c){c.classList.remove("selected")});
   el.classList.add("selected");
   selectedDate=date;
-  var times=["9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM"];
+  var times=["12:30 PM","3:00 PM","7:00 PM"];
   var ts=document.getElementById("time-slots");
   ts.innerHTML="";
   times.forEach(function(t){
@@ -1657,10 +2283,46 @@ function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++}renderCalen
 function bookAppointment(){
   if(!selectedDate||!selectedTime) return;
   var dateStr=selectedDate.toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
-  if(currentRecruit){currentRecruit.appt=dateStr+" at "+selectedTime;saveRecruits()}
+  var apptStr = dateStr+" at "+selectedTime;
+  if(currentRecruit){
+    currentRecruit.appt = apptStr;
+    saveRecruits();
+    // Save to Firebase
+    if(window._db && currentRecruit._firebaseId){
+      window._fbUpdateDoc(window._fbDoc(window._db,"recruits",currentRecruit._firebaseId),{appt:apptStr}).catch(function(e){console.error("Firebase appt error:",e)});
+    } else if(window._db){
+      window._fbGetDocs(window._fbQuery(window._fbCollection(window._db,"recruits"),window._fbWhere("id","==",currentRecruit.id))).then(function(snap){
+        snap.forEach(function(d){
+          window._fbUpdateDoc(window._fbDoc(window._db,"recruits",d.id),{appt:apptStr});
+        });
+      });
+    }
+
+    var r = currentRecruit;
+    var fullName = r.first + " " + r.last;
+
+    // Email recruit confirmation
+    emailjs.send("service_vjilj5a", "template_kldk4r8", {
+      name: fullName,
+      subject: "Your Call is Booked — " + dateStr + " at " + selectedTime,
+      message: "Hi " + r.first + ",\n\nYour 5-minute intro call with Nansi Hanna is confirmed!\n\nDATE:  " + dateStr + "\nTIME:  " + selectedTime + "\nDURATION:  5 minutes\n\nNansi will reach out to you at:\n  Phone: " + r.phone + "\n  Email: " + r.email + "\n\nIf you have any questions beforehand, you can text Nansi at 619-558-7851.\n\nSee you soon!\n— Elite Motional Financial",
+      reply_to: "nansihanna.ffl@gmail.com"
+    }).then(function(){
+      console.log("Confirmation sent to recruit");
+    }, function(err){
+      console.error("Recruit email error:", err);
+    });
+
+    // Email Nansi notification
+    sendNansiNotification(
+      "New Call Booked — " + fullName + " on " + dateStr + " at " + selectedTime,
+      "Hi Nansi,\n\nA new call has been booked!\n\nDATE:  " + dateStr + "\nTIME:  " + selectedTime + "\nDURATION:  5 minutes\n\nRECRUIT INFO:\n  Name:   " + fullName + "\n  Email:  " + r.email + "\n  Phone:  " + r.phone + "\n  State:  " + r.state + "\n\nLog into the Owner Dashboard → Calendar tab to see all your upcoming appointments.\n\n— Elite Motional Financial Portal",
+      fullName
+    );
+  }
   document.getElementById("confirm-details").innerHTML="<div class='confirm-row'><div class='key'>Name</div><div class='val'>"+currentRecruit.first+" "+currentRecruit.last+"</div></div><div class='confirm-row'><div class='key'>Email</div><div class='val'>"+currentRecruit.email+"</div></div><div class='confirm-row'><div class='key'>Phone</div><div class='val'>"+currentRecruit.phone+"</div></div><div class='confirm-row'><div class='key'>Date and Time</div><div class='val'>"+dateStr+" at "+selectedTime+"</div></div><div class='confirm-row'><div class='key'>Duration</div><div class='val'>5-minute intro call</div></div>";
   showPage("confirm");
-  showToast("Confirmation sent to your email and phone");
+  showToast("Booking confirmed!");
 }
 
 function saveRecruits(){localStorage.setItem("nh_recruits",JSON.stringify(recruits))}
